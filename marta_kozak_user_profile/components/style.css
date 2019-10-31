@@ -1,0 +1,132 @@
+body, html {
+    height: 100%;
+    }
+.bg {
+    background-image: url(../img/background.jpg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+.Avatar{
+    position: relative;
+
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    margin-left: 40px;
+    margin-top: 120px;
+    
+  }
+
+.btn{
+    position: relative;
+    left: 30px;
+    top: 40px;
+    width:200px;
+    height:30px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;    
+    color: red;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+.btn:hover{
+    color: brown;
+}
+.btn:active{
+    color: black;
+}
+
+.btnMain{
+    position: relative;
+    left: 30px;
+    top: 40px;
+    width:200px;
+    height:30px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1.5px solid;
+    border-color: red;
+    background: none;
+    cursor: pointer;    
+    color: red;
+    font-family: 'Montserrat';
+    font-size: 16px;
+}
+.btnMain:hover{
+    color: brown;
+    border-color: brown;
+
+}
+.btnMain:active{
+    color: black;
+    border-color: black;
+
+}
+
+
+.list{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    margin-top: -10px;
+}
+
+.userField{
+    color: #0c0769;
+    margin-bottom: 40px;
+
+    font-family: 'Montserrat';
+    font-size: 18px;
+
+}
+.changeField{
+    color: #0c0769;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    font-size: 16px;
+
+}
+.userData{
+    color: rgb(0, 0, 0);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-size: 18px;
+
+}
+
+
+
+.listFields{
+    display: flex;
+    /* text-align: right; */
+
+    flex-direction: column;
+    /* margin-bottom: 60px; */
+    margin-top: -400px;
+    margin-left: 300px;
+}
+
+.line {
+    border-left: 2px solid #0c0769;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    /* top:40%;
+    bottom: 100%; */
+    margin-left: -280px;
+    margin-top: 110px;
+    margin-bottom: -600px;
+    /* top: 0; */
+  }
