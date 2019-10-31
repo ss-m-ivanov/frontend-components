@@ -1,0 +1,24 @@
+.file-upload-section {
+  width: 600px;
+  height: 350px;
+  background-color: rgba(102,0,0,0.8);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #FFCD00;
+}
+
+.upload-icon img {
+  width: 120px;
+}
+
+.file-upload-form {
+  position: relative;
+  top: -350px;
+  margin-bottom: -350px;
+  height: 350px;
+}
+
+.file-upload-form input {
+  outline: none;
+  opacity: 0;
+}
