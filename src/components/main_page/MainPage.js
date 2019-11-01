@@ -2,7 +2,7 @@ import React from 'react';
 import JumbotronComponent from "./Jumbotron/JumbotronComponent";
 
 
-const MainPage = () => {
+const MainPage = (props) => {
     return (
         <div className="h-100 d-flex justify-content-center align-items-center">
             <main>

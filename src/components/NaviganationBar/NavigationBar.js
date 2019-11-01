@@ -31,7 +31,6 @@ class NavigationBar extends Component {
                                       <div>
                                       <img src={this.state.imgUrl} width="40" alt="User`s avatar" class="rounded-circle"/>
                                       </div>
-
                                       </NavLink>
                                     </Nav.Link>
                                 </>

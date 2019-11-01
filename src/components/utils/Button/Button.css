@@ -1,0 +1,82 @@
+.reg-form > .button-div > button {
+    width: 300px;
+    height: 45px;
+    border-radius: 32px;
+    border: 2px solid #03befc;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 3px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+
+    margin-top: 20px;
+
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+
+#reg-form > .button-div > button:hover {
+
+    border: 2px solid #03befc;
+    background-color: #03befc;
+    color: #fff;
+}
+
+
+#loginForm > button {
+    width: 300px;
+    height: 45px;
+    border-radius: 32px;
+    border: 2px solid #03befc;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 3px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+
+    margin-top: 20px;
+
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+
+#loginForm > button:hover {
+
+    border: 2px solid #03befc;
+    background-color: #03befc;
+    color: #fff;
+}
+
+
+#feedbackForm > .button-div > button {
+    width: 300px;
+    height: 45px;
+    border-radius: 32px;
+    border: 2px solid #03befc;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 3px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+
+    margin-top: 20px;
+
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+
+#feedbackForm > .button-div > button:hover {
+
+    border: 2px solid #03befc;
+    background-color: #03befc;
+    color: #fff;
+}
