@@ -1,0 +1,29 @@
+#feedbackForm > .form-group > textarea {
+    width: 360px;
+    height: 150px;
+    max-height: 150px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid grey;
+    outline: 0;
+    
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    transition: all 0.7s ease;
+	-webkit-transition: all 0.7s ease;
+	-moz-transition: all 0.7s ease;
+	-o-transition: all 0.7s ease;
+}
+
+#feedbackForm > .form-group > textarea:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /* margin-top: 15px; */
+}
+
+
+#feedbackForm > textarea::placeholder {
+    font-size: 16px;
+}

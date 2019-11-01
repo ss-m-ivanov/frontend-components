@@ -1,0 +1,64 @@
+#root {
+    margin: 0;
+    padding: 0;
+}
+
+#loginHeader {
+    margin-top: 15px;
+    font-weight: 400;
+    text-align: center;
+    color: grey;
+}
+
+#reg-header {
+    margin-top: 15px;
+    font-weight: 400;
+    text-align: center;
+    color: grey;
+}
+
+#feedbackHeader {
+    margin-top: 15px;
+    font-weight: 400;
+    text-align: center;
+    color: grey;
+}
+
+.container {
+    margin-top: 40px;
+    box-shadow: 3px 3px 6px 6px rgba(0, 0, 255, .2);
+}
+
+
+.col {
+    width: 500px;
+    height: 520px;
+}
+
+.col > img {
+    /* border: 1px solid rgba(0, 0, 255, .2); */
+    width: 100%;
+    height: 100%;
+}
+
+#loginForm {
+   
+    text-align: center;
+    margin-top: 40px;
+}
+
+#reg-form {
+   
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+#errorMessage {
+    width: 360px;
+    height: 36px;
+    margin: 0 auto;
+
+    font-size: 12px;
+    text-align: left;
+}

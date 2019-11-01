@@ -1,0 +1,85 @@
+#reg-form > .form-group > input {
+    width: 360px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid grey;
+    outline: 0;
+    
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    transition: all 0.7s ease;
+	-webkit-transition: all 0.7s ease;
+	-moz-transition: all 0.7s ease;
+	-o-transition: all 0.7s ease;
+}
+
+#reg-form > .form-group > input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /* margin-top: 15px; */
+}
+
+
+#reg-form > input::placeholder {
+    font-size: 16px;
+}
+
+
+#loginForm > .form-group > input {
+    width: 360px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid grey;
+    outline: 0;
+    
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    transition: all 0.7s ease;
+	-webkit-transition: all 0.7s ease;
+	-moz-transition: all 0.7s ease;
+	-o-transition: all 0.7s ease;
+}
+
+#loginForm > .form-group > input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /* margin-top: 15px; */
+}
+
+
+#loginForm > input::placeholder {
+    font-size: 16px;
+}
+
+
+#feedbackForm > .form-group > input {
+    width: 360px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid grey;
+    outline: 0;
+    
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    transition: all 0.7s ease;
+	-webkit-transition: all 0.7s ease;
+	-moz-transition: all 0.7s ease;
+	-o-transition: all 0.7s ease;
+}
+
+#feedbackForm > .form-group > input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /* margin-top: 15px; */
+}
+
+
+#feedbackForm > input::placeholder {
+    font-size: 16px;
+}
