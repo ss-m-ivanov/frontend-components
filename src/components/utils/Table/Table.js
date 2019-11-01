@@ -3,7 +3,7 @@ import React from "react";
 const Table = props => {
 
     return(
-        <div className="table-field p-3 w-100">
+        <div className="table-field violet-frame bg-light p-3 w-100 h-100 overflow-auto">
             <h2 className="d-flex justify-content-center m-3">{props.tableName}</h2>
             <div className="overflow-auto w-100 pr-1">
                 <table className="table table-hover">

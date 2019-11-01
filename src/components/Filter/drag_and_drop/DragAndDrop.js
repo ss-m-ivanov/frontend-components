@@ -6,7 +6,7 @@ const DragAndDrop = props => {
 
   return(
       <div className="my-5">
-          <div className="file-upload-section d-flex justify-content-center align-items-center flex-column">
+          <div className="file-upload-section violet-frame rounded bg-light d-flex justify-content-center align-items-center flex-column">
               <div className="upload-icon">
                   <img src={uploadImage} alt="upload icon"/>
               </div>

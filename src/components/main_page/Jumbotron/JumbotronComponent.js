@@ -6,19 +6,13 @@ import Button from "react-bootstrap/Button";
 class JumbotronComponent extends Component {
     render() {
         return (
-            <Jumbotron className="bg-light">
-                <h1>Hello, world!</h1>
+            <Jumbotron className="bg-light violet-frame rounded d-flex justify-content-center align-items-center flex-column">
+                <h1 className="font-weight-bold mb-2">FilterMe</h1>
+                <h4 className="mb-4 text-center">
+                    PROCESS YOUR DATA WITH A LITTLE EFFORT
+                </h4>
                 <p>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur deserunt dicta et impedit nisi odio placeat provident sint ullam!
-                        Amet architecto culpa debitis fuga illum impedit in libero non.</span><span>Cumque dolor necessitatibus praesentium quas. Ad alias aperiam assumenda
-                    blanditiis cum deleniti dolorem dolorum eligendi expedita, harum impedit ipsam maiores neque odit quas quo sapiente temporibus ut veritatis voluptatum.
-                    Error?</span><span>Animi aperiam architecto asperiores atque corporis delectus doloribus eos est, eveniet harum id laudantium magnam magni minima nesciunt
-                    odit, officia placeat quam quia quibusdam sint sunt tenetur ullam voluptate voluptatem.</span><span>Consectetur optio perspiciatis qui voluptatibus.
-                    Atque consectetur dignissimos, dolor ducimus fugiat incidunt ipsum iure nesciunt nostrum odio perspiciatis quae quas quisquam reiciendis repudiandae
-                    rerum sed sunt suscipit totam vitae voluptates!</span>
-                </p>
-                <p>
-                    <Button variant="primary">Learn more</Button>
+                    <Button>Go to the service</Button>
                 </p>
             </Jumbotron>
         );

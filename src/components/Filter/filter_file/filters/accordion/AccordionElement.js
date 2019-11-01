@@ -4,7 +4,7 @@ import CheckBoxes from './checkboxes/CheckBoxes';
 
 const AccordionElement = props => {
   return(
-    <div className="overflow-auto">
+    <div>
       <Accordion className="m-3">
         {props.uniqueData.map(object => {
           return(

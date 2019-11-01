@@ -1,36 +1,26 @@
 import React, {Component} from 'react'
 import {Container} from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import {NavLink} from "react-router-dom";
 
 
 class Footer extends Component {
     render() {
         return (
-            <footer className="bg-light">
-                <Container>
-                    <Row>
-                        <Col md="6">
-                            <h5 className="title">FilterMe</h5>
-                            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet consequatur non quas voluptatum. Autem, cumque dolorem dolores doloribus dolorum eaque harum incidunt iure odit perspiciatis repellendus saepe vitae! Saepe.</span></p>
-                        </Col>
-                        <Col md="5">
-                            <h5 className="title">Links:</h5>
-                            <ul>
-                                <li className="list-unstyled">
-                                    <NavLink to="#">Facebook</NavLink>
-                                </li>
-                                <li className="list-unstyled">
-                                    <NavLink to="#">Telegram</NavLink>
-                                </li>
-                                <li className="list-unstyled">
-                                    <NavLink to="#">LinkedIn</NavLink>
-                                </li>
-                            </ul>
-                        </Col>
-                    </Row>
-                </Container>
+            <footer className="bg-light fixed-bottom">
+                <Container className="p-2">
+                  <ul className="mb-3 d-flex justify-content-around">
+                    <h5 className="title m-0">Links:</h5>
+                    <li className="list-unstyled">
+                      <a href="https://www.facebook.com/">Facebook</a>
+                    </li>
+                    <li className="list-unstyled">
+                      <a href="https://web.telegram.org/">Telegram</a>
+                    </li>
+                    <li className="list-unstyled">
+                      <a href="https://www.linkedin.com/">LinkedIn</a>
+                    </li>
+                  </ul>
+                  <p className="m-0 text-center">©All rights reserved.</p>
+              </Container>
             </footer>
     );
     }

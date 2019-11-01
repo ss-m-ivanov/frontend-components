@@ -37,7 +37,7 @@ const FilePage = () => {
 
   if (state.fileUploadStatus) {
     return (
-      <div className="file-page w-100 h-100 d-flex align-items-center">
+      <div className="file-page w-100 h-100">
         <FilterFile uniqueData={uniqueData} columns={columns} fileData={state.fileData} />
       </div>
     );

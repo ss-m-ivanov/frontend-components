@@ -1,8 +1,9 @@
 import React from 'react';
-import Table from "../unils/Table/Table";
+import Table from "../utils/Table/Table";
 
 
 class History extends React.Component {
+  
     state = {
         data: [
             {

@@ -1,12 +1,11 @@
 import React from 'react';
-import s from './MainPage.module.css';
 import JumbotronComponent from "./Jumbotron/JumbotronComponent";
 
 
 const MainPage = () => {
     return (
-        <div className={s.App}>
-            <main className={s.App_header}>
+        <div className="h-100 d-flex justify-content-center align-items-center">
+            <main>
                 <JumbotronComponent/>
             </main>
         </div>

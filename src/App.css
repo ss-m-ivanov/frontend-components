@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+body #root{
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+}
+
+body #root .navbar {
+  background-color: #6f42c1 !important;
+}
+
+body #root .btn-link {
+  color: black;
+}
+
+body #root main .btn {
+  background-color: #6f42c1 !important;
+  border-color: #6f42c1 !important;
+}
+
+body .navbar a, body .navbar .navbar-brand {
+  color: white;
+}
+
+body #root .violet-frame {
+  border: 1px;
+  border-color: rgba(0, 0, 255, .2);
+  box-shadow: 3px 3px 6px 6px rgba(0, 0, 255, .2);
+}
+
+.content-section {
+  height: 100vh;
+  padding: 80px 20px 125px 20px;
+}

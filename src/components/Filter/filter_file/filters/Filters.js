@@ -2,12 +2,11 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import AccordionElement from './accordion/AccordionElement';
 import RangeSelector from './range_selector/RangeSelector';
-import './Filters.css';
 
 const Filters = props => {
 
   return(
-    <div className="filters-field w-100 p-3">
+    <div className="filters-field violet-frame bg-light w-100 h-100 p-3 overflow-auto">
       <h2 className="d-flex justify-content-center m-3">Filters</h2>
       <RangeSelector />
       <AccordionElement uniqueData={props.uniqueData} />
