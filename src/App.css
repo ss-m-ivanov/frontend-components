@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-body #root{
+body #root {
   font-family: 'Montserrat', sans-serif;
   width: 100%;
   background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
@@ -46,6 +46,6 @@ body img {
 
 body .alert-success {
     color: #333366;
-    background-color: #CCCCFF;
-    border-color: #CCCCFF;
+    background-color: #ccccff;
+    border-color: #ccccff;
 }

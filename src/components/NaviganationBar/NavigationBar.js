@@ -29,7 +29,7 @@ class NavigationBar extends Component {
                                     <Nav.Link className="p-0 ml-2" href="#">
                                       <NavLink to={"/profile"}>
                                       <div>
-                                      <img src={this.state.imgUrl} width="40" alt="User`s avatar" class="rounded-circle"/>
+                                      <img src={this.state.imgUrl} width="40" alt="User`s avatar" className="rounded-circle"/>
                                       </div>
                                       </NavLink>
                                     </Nav.Link>

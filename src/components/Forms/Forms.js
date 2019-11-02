@@ -32,7 +32,7 @@ const Forms = props => {
       'login': <Login validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'register': <Registration validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'feedback': <Feedback validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
-    'forgotpassword': <ForgotPassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>
+      'forgotpassword': <ForgotPassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>
     };
 
     return (
