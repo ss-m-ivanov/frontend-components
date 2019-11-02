@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import AccordionElement from './accordion/AccordionElement';
-import RangeSelector from './range_selector/RangeSelector';
+import AccordionElement from './AccordionElement/AccordionElement';
+import RangeSelector from './RangeSelector/RangeSelector';
 
 const Filters = props => {
 

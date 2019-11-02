@@ -8,18 +8,13 @@ const TextArea = (props) => {
         <div className="form-group">
             <textarea
                 id={props.name}
-                className="form-control form-input "
+                className="form-control form-input bg-light"
                 name={props.name}
                 type={props.type}
                 value={props.value}
                 onChange={props.handleChange}
-                placeholder={props.placeholder}
-            />
-            <small className="form-text text-muted" id="errorMessage">{props.errorMessage}</small>
+                placeholder={props.placeholder}/>
         </div>
-
-
-
     );
 };
 

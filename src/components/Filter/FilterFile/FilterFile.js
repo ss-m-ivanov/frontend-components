@@ -1,5 +1,5 @@
 import React from 'react';
-import Filters from './filters/Filters';
+import Filters from './Filters/Filters';
 import Table from "../../utils/Table/Table";
 
 const FilterFile = props => {

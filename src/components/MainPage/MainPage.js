@@ -1,5 +1,5 @@
 import React from 'react';
-import JumbotronComponent from "./Jumbotron/JumbotronComponent";
+import JumbotronComponent from "./JumbotronComponent/JumbotronComponent";
 
 
 const MainPage = (props) => {

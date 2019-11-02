@@ -25,7 +25,7 @@ class NavigationBar extends Component {
                                     <Nav.Link href="#"><NavLink to={"/filter"}>Filter</NavLink></Nav.Link>
                                     <Nav.Link href="#"><NavLink to={"/history"}>History</NavLink></Nav.Link>
                                     <Nav.Link href="#"><NavLink to={"/feedback"}>Feedback</NavLink></Nav.Link>
-                                    <Nav.Link href="#"><NavLink to={"/logout"}>Logout</NavLink></Nav.Link>
+                                    <Nav.Link href="#"><NavLink to={"/"}>Logout</NavLink></Nav.Link>
                                     <Nav.Link className="p-0 ml-2" href="#">
                                       <NavLink to={"/profile"}>
                                       <div>

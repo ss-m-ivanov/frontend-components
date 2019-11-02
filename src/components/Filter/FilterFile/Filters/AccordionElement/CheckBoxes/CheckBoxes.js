@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InputGroup, FormControl } from 'react-bootstrap';
-import CheckBox from './checkbox/CheckBox';
+import CheckBox from './CheckBox/CheckBox';
 
 
 const CheckBoxes = props => {
@@ -12,7 +12,7 @@ const CheckBoxes = props => {
 
 const filterFilters = event => {
     setState({values: state.values, filter: event.target.value})
-}
+};
 
 const checkBoxClicked = value => {
     const checkBox = state.values.map(object => object.value === value ?

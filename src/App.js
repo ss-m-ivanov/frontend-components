@@ -1,12 +1,11 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import MainPage from "./components/main_page/MainPage";
+import MainPage from "./components/MainPage/MainPage";
 import NavigationBar from "./components/NaviganationBar/NavigationBar";
 import Footer from "./components/Footer/Footer";
 import History from "./components/History/History";
 import FilePage from "./components/Filter/FilePage";
 import './App.css';
-import TextArea from "./components/utils/Textarea/TextArea";
 import Forms from "./components/Forms/Forms";
 
 
@@ -19,11 +18,11 @@ const App = () => {
               <Route path="/" exact render={() => <MainPage/>}/>
               <Route path="/history" render={() => <History/>}/>
               <Route path="/filter" render={() => <FilePage/>}/>
-              <Route path="/about" render={() => {return(<p>About</p>)}}/>
               <Route path="/login" render={() => <Forms type="login"/>}/>
-              <Route path="/register" render={() => <Forms type={"register"}/>}/>
-              <Route path="/logout" render={() => {return(<p>You are logged out</p>)}}/>
-              <Route path="/feedback" render={() => <TextArea/>}/>
+              <Route path="/register" render={() => <Forms type="register"/>}/>
+              <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
+              <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
+              <Route path="/about" render={() => {return(<p>About</p>)}}/>
               <Route path="/profile" render={() => {return(<p>Profile</p>)}}/>
           </div>
           <Footer/>

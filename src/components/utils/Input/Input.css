@@ -1,4 +1,4 @@
-.custom-input-form > .form-group > input {
+body .custom-input-form {
     width: 360px;
     margin: 0 auto;
     border: 0;
@@ -15,12 +15,12 @@
     -o-transition: all 0.7s ease;
 }
 
-.custom-input-form > .form-group > input:focus {
+body .custom-input-form:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
 
-.custom-input-form > input::placeholder {
+body .custom-input-form::placeholder {
     font-size: 16px;
 }

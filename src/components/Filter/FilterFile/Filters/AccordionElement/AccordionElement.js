@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accordion, Card, Button } from 'react-bootstrap';
-import CheckBoxes from './checkboxes/CheckBoxes';
+import CheckBoxes from './CheckBoxes/CheckBoxes';
 
 const AccordionElement = props => {
   return(

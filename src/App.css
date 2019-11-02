@@ -6,24 +6,30 @@ body #root{
   background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
 }
 
-body #root .navbar {
+body .navbar {
   background-color: #6f42c1 !important;
 }
 
-body #root .btn-link {
+body .btn-link {
   color: black;
 }
 
-body #root main .btn {
+body .btn, body .btn-secondary {
   background-color: #6f42c1 !important;
   border-color: #6f42c1 !important;
 }
+
+.accordion .card .btn-link {
+  background: none !important;
+  border: none !important;
+}
+
 
 body .navbar a, body .navbar .navbar-brand {
   color: white;
 }
 
-body #root .violet-frame {
+body .violet-frame {
   border: 1px;
   border-color: rgba(0, 0, 255, .2);
   box-shadow: 3px 3px 6px 6px rgba(0, 0, 255, .2);
@@ -32,4 +38,14 @@ body #root .violet-frame {
 .content-section {
   height: 100vh;
   padding: 80px 20px 125px 20px;
+}
+
+body img {
+  object-fit: cover;
+}
+
+body .alert-success {
+    color: #333366;
+    background-color: #CCCCFF;
+    border-color: #CCCCFF;
 }

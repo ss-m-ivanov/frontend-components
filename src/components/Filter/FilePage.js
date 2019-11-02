@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import DragAndDrop from './drag_and_drop/DragAndDrop';
-import FilterFile from './filter_file/FilterFile';
+import DragAndDrop from './DragAndDrop/DragAndDrop';
+import FilterFile from './FilterFile/FilterFile';
 
 const FilePage = () => {
   const [state, setState] = useState({
