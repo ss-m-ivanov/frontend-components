@@ -53,12 +53,12 @@ const Profile = () => {
 
     return(
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-        <div className="w-75 h-75 violet-frame bg-light">
+        <div className="w-50 h-75 violet-frame bg-light">
           <div className="row w-100 h-50 m-0 p-3">
-              <div className="col-3 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
+              <div className="col-4 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
                 <img className="rounded-circle h-100" src="https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png" alt="User avatar"/>
               </div>
-              <div className="col-9 h-100 p-3 d-flex justify-content-around flex-column">
+              <div className="col- h-100 p-3 d-flex justify-content-around flex-column">
                   <h5 className="font-weight-bold">NAME:</h5>
                   <h5>{state.userName}</h5>
                   <h5 className="font-weight-bold">SURNAME:</h5>
@@ -74,7 +74,7 @@ const Profile = () => {
               <Button variant="secondary">Change password</Button>
             </ButtonGroup>
           </div>
-          <div className="row w-100 h-25 m-0 p-3 d-flex justify-content-end align-items-end">
+          <div className="row w-100 h-25 m-0 p-3 d-flex justify-content-center align-items-center">
             <div className="m-3">
               <h5 className="font-weight-bold">WITH US</h5>
               <h5>12m.</h5>
