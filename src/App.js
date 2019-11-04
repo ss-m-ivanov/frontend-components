@@ -6,8 +6,10 @@ import Footer from "./components/Footer/Footer";
 import History from "./components/History/History";
 import FilePage from "./components/Filter/FilePage";
 import Profile from "./components/Profile/Profile";
-import './App.css';
 import Forms from "./components/Forms/Forms";
+import About from "./components/About/About";
+import './App.css';
+
 
 
 const App = () => {
@@ -24,7 +26,8 @@ const App = () => {
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
               <Route path="/profile" render={() => <Profile/>}/>
-              <Route path="/about" render={() => {return(<p>About</p>)}}/>
+              <Route path="/changepassword" render={() => <Forms type="changepassword"/>}/>
+              <Route path="/about" render={() => <About/>}/>
           </div>
           <Footer/>
       </div>

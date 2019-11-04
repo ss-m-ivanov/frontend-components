@@ -3,6 +3,7 @@ import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import Feedback from "./Feedback/Feedback";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import ChangePassword from "./ChangePassword/ChangePassword";
 
 
 const Forms = props => {
@@ -32,7 +33,8 @@ const Forms = props => {
       'login': <Login validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'register': <Registration validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'feedback': <Feedback validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
-      'forgotpassword': <ForgotPassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>
+      'forgotpassword': <ForgotPassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
+      'changepassword': <ChangePassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>
     };
 
     return (
