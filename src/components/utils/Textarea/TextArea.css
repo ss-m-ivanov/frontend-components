@@ -8,10 +8,8 @@ body .form-group textarea {
     border-bottom: 2px solid grey;
     outline: 0;
     resize: none;
-
     -webkit-box-shadow: none;
     box-shadow: none;
-
     transition: all 0.7s ease;
     -webkit-transition: all 0.7s ease;
     -moz-transition: all 0.7s ease;

@@ -13,7 +13,13 @@ const Profile = () => {
    });
 
    const [show, setShow] = useState(false);
-   const handleClose = () => setShow(false);
+   const handleClose = () => {
+     setShow(false);
+     setState(prevState => ({
+         ...prevState, changeName: state.userName, changeSurname: state.userSurname,
+         changeEmail: state.userEmail
+     }));
+   }
    const handleShow = () => setShow(true);
 
     const handleChange = event => {
@@ -49,10 +55,10 @@ const Profile = () => {
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
         <div className="w-75 h-75 violet-frame bg-light">
           <div className="row w-100 h-50 m-0 p-3">
-              <div className="col w-50 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
+              <div className="col-3 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
                 <img className="rounded-circle h-100" src="https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png" alt="User avatar"/>
               </div>
-              <div className="col w-100 h-100 p-0 d-flex justify-content-around flex-column">
+              <div className="col-9 h-100 p-3 d-flex justify-content-around flex-column">
                   <h5 className="font-weight-bold">NAME:</h5>
                   <h5>{state.userName}</h5>
                   <h5 className="font-weight-bold">SURNAME:</h5>
@@ -62,8 +68,8 @@ const Profile = () => {
               </div>
           </div>
           <div className="row w-100 h-25 m-0 p-3 d-flex justify-content-center align-items-center flex-column">
-            <ButtonGroup aria-label="Basic example">
-              <a href='/history'><Button variant="secondary">View History</Button></a>
+            <ButtonGroup aria-label="Profile-buttons">
+              <Button variant="secondary">View History</Button>
               <Button variant="secondary" onClick={handleShow}>Edit profile</Button>
               <Button variant="secondary">Change password</Button>
             </ButtonGroup>
