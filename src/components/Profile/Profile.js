@@ -51,6 +51,7 @@ const Profile = () => {
       }));
     }
 
+
     return(
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
         <div className="w-50 h-75 violet-frame bg-light">

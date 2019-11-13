@@ -6,8 +6,8 @@ import {Button, Alert} from "react-bootstrap";
     const [state, setState] = useState({
       usernameValue: '',
       usernameValid: false,
-      emailValue: '',
-      emailValid: false,
+      userNameValue: '',
+      userNameValid: false,
       passwordValue: '',
       passwordValid: false,
       confirmPasswordValue: '',
@@ -29,7 +29,7 @@ import {Button, Alert} from "react-bootstrap";
         const emailValid = props.validateValue(currentValue, /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
         props.drawBorder(event, emailValid);
         setState(prevState => ({
-            ...prevState, emailValue: currentValue, emailValid: emailValid
+            ...prevState, userNameValue: currentValue, userNameValid: emailValid
         }));
     }
 
@@ -53,7 +53,7 @@ import {Button, Alert} from "react-bootstrap";
 
     const handleSendData = event => {
         event.preventDefault();
-        if (state.usernameValid & state.emailValid & state.passwordValid & state.confirmValid) {
+        if (state.usernameValid & state.userNameValid & state.passwordValid & state.confirmValid) {
             alert('Data is valid');
         }
         else {
@@ -77,7 +77,7 @@ import {Button, Alert} from "react-bootstrap";
                 <Input
                   type={'email'}
                   name={'email-field'}
-                  value={state.emailValue}
+                  value={state.userNameValue}
                   placeholder={'Enter your email'}
                   handleChange={handleEmailChange}
                   disableSpaces={props.disableSpaces}/>

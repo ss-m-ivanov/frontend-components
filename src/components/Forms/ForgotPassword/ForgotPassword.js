@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
 
+
  const ForgotPassword = props => {
     const [state, setState] = useState({
-      emailValue: '',
-      emailValid: false,
+      userNameValue: '',
+      userNameValid: false,
     });
 
     const handleEmailChange = event => {
@@ -13,14 +14,29 @@ import {Button, Alert} from "react-bootstrap";
         const emailValid = props.validateValue(currentValue, /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
         props.drawBorder(event, emailValid);
         setState(prevState => ({
-            ...prevState, emailValue: currentValue, emailValid: emailValid
+            ...prevState, userNameValue: currentValue, userNameValid: emailValid
         }));
+
     };
 
+     const postData = (email) =>{
+        fetch("http://127.0.0.1:5000/reset-password", {
+            method : 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'user_email': email})
+
+        })
+            .then((response) => response.json())
+            .then(res => console.log(res))
+    };
 
     const handleSendData = event => {
         event.preventDefault();
-        if (state.emailValid) {
+        if (state.userNameValid) {
+            postData(state.userNameValue);
             alert('Data is valid');
         }
         else {
@@ -35,7 +51,7 @@ import {Button, Alert} from "react-bootstrap";
               <Input
                 type={'email'}
                 name={'email-field'}
-                value={state.emailValue}
+                value={state.userNameValue}
                 placeholder={'Enter your email'}
                 handleChange={handleEmailChange}
                 disableSpaces={props.disableSpaces}/>

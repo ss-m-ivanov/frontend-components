@@ -9,6 +9,16 @@ class NavigationBar extends Component {
         "imgUrl": "https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png"
     };
 
+    componentDidMount (){
+
+    }
+
+    getData = () =>{
+        fetch("http://127.0.0.1:5000/logout")
+            .then((response) => response.json())
+            .then(res => console.log(res))
+    };
+
     render() {
         return (
             <Navbar collapseOnSelect className="fixed-top" expand="lg" bg="light" variant="light">
@@ -25,7 +35,7 @@ class NavigationBar extends Component {
                                     <Nav.Link href="#"><NavLink to={"/filter"}>Filter</NavLink></Nav.Link>
                                     <Nav.Link href="#"><NavLink to={"/history"}>History</NavLink></Nav.Link>
                                     <Nav.Link href="#"><NavLink to={"/feedback"}>Feedback</NavLink></Nav.Link>
-                                    <Nav.Link href="#"><NavLink to={"/"}>Logout</NavLink></Nav.Link>
+                                    // /* Change route, cause clearing session*/
                                     <Nav.Link className="p-0 ml-2" href="#">
                                       <NavLink to={"/profile"}>
                                       <div>
