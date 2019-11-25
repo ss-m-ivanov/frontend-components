@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Table from "../utils/Table/Table";
+import {authAPI} from "../../api/api";
 
 const History = () => {
    const [state, setState] = useState({
@@ -32,7 +33,7 @@ const History = () => {
    });
 
    const columns = [...new Set(...state.data.map(obj => Object.keys(obj)))];
-
+   authAPI.profile();
    return (
        <div>
          <Table tableName="History" fileData={state.data} columns={columns} />

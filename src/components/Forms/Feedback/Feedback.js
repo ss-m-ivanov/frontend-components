@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
-import TextArea from "../../utils/TextArea/TextArea";
+import TextArea from "../../utils/Textarea/TextArea";
 import {Button} from "react-bootstrap";
 
  const Feedback = props => {
