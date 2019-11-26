@@ -4,8 +4,13 @@ import {authAPI} from "../../api/api";
 
 
 const MainPage = (props) => {
-    authAPI.login("Maks", "qwerytodatabase");
-    console.log("hello")
+    // authAPI.logout();
+    // console.log("logouted")
+    // // authAPI.login("Maks", "qwerytodatabase");
+    //
+    // // authAPI.profile();
+    // //window.location.replace("http://localhost:3000/history");
+    // console.log("hello");
 
 
     return (

@@ -1,15 +1,10 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 
 
-class NavigationBar extends Component {
-    state = {
-        "isAuth": true,
-        "imgUrl": "https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png"
-    };
+const NavigationBar = (props) => {
 
-    render() {
         return (
             <Navbar collapseOnSelect className="fixed-top" expand="lg" bg="light" variant="light">
                 <Navbar.Brand className="font-weight-bold" href="/">FilterMe</Navbar.Brand>
@@ -20,7 +15,7 @@ class NavigationBar extends Component {
                     <Nav>
                         <Nav.Link href="#"><NavLink to={"/about"}>About</NavLink></Nav.Link>
                         {
-                            this.state.isAuth
+                            props.isAuth
                                 ? <>
                                     <Nav.Link href="#"><NavLink to={"/filter"}>Filter</NavLink></Nav.Link>
                                     <Nav.Link href="#"><NavLink to={"/history"}>History</NavLink></Nav.Link>
@@ -29,7 +24,7 @@ class NavigationBar extends Component {
                                     <Nav.Link className="p-0 ml-2" href="#">
                                       <NavLink to={"/profile"}>
                                       <div>
-                                      <img src={this.state.imgUrl} width="40" alt="User`s avatar" className="rounded-circle"/>
+                                      <img src={props.imgUrl} width="40" alt="User`s avatar" className="rounded-circle"/>
                                       </div>
                                       </NavLink>
                                     </Nav.Link>
@@ -45,7 +40,6 @@ class NavigationBar extends Component {
                 </Navbar.Collapse>
             </Navbar>
         );
-    }
 }
 
 NavigationBar.propTypes = {};

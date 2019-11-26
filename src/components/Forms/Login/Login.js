@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
+import {authAPI} from "../../../api/api";
 
  const Login = props => {
     const [state, setState] = useState({
@@ -12,30 +13,34 @@ import {Button, Alert} from "react-bootstrap";
 
     const handleEmailChange = event => {
         const currentValue = event.target.value;
-        const emailValid = props.validateValue(currentValue, /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-        props.drawBorder(event, emailValid);
+        //const emailValid = props.validateValue(currentValue, /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        props.drawBorder(event, currentValue);
         setState(prevState => ({
-            ...prevState, emailValue: currentValue, emailValid: emailValid
+            ...prevState, emailValue: currentValue, emailValid: true
         }));
     };
 
     const handlePasswordChange = event => {
         const currentValue = event.target.value;
-        const passwordValid = props.validateValue(currentValue, /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/)
-        props.drawBorder(event, passwordValid);
+        // const passwordValid = props.validateValue(currentValue, /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/)
+
+        props.drawBorder(event, currentValue);
         setState(prevState => ({
-            ...prevState, passwordValue: currentValue, passwordValid: passwordValid
+            ...prevState, passwordValue: currentValue, passwordValid: currentValue
         }))
     };
 
     const handleSendData = event => {
         event.preventDefault();
-        if (state.emailValid && state.passwordValid) {
-            alert('Data is valid');
-        }
-        else {
-            alert('Data is invalid');
-        }
+        // if (state.emailValid && state.passwordValid) {
+        //
+        //     alert('Data is valid');
+        // }
+        // authAPI.login(state.emailValue, state.passwordValue)
+        // console.log(state.emailValue, state.passwordValue)
+        // else {
+        //     alert('Data is invalid');
+        // }
     }
 
     return (
@@ -43,7 +48,6 @@ import {Button, Alert} from "react-bootstrap";
           <h2>Login</h2>
           <form className="mb-5" onSubmit={handleSendData}>
               <Input
-                type={'email'}
                 name={'email-field'}
                 value={state.emailValue}
                 placeholder={'Enter your email'}

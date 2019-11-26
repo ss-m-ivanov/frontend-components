@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Route} from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import NavigationBar from "./components/NaviganationBar/NavigationBar";
@@ -9,14 +9,36 @@ import Profile from "./components/Profile/Profile";
 import Forms from "./components/Forms/Forms";
 import About from "./components/About/About";
 import './App.css';
+import {authAPI} from "./api/api";
+import axios from "axios";
 
 
 
 const App = () => {
+    let [state, setState]= useState({
+        name: null,
+        surname: null,
+        email: null,
+        isAuth: false,
+        imgUrl: null
+    });
+
+    authAPI.login("Maks", "qwerytodatabase");
+
+    const profile = () => {
+        return axios({method: 'get',
+            url: "http://localhost:5000/profile",
+            withCredentials: true
+        })
+            .then(responce => setState({name: responce.data.user_name, isAuth: true}))
+            .catch(error => console.log(error.response))
+    };
+
+    profile();
 
   return (
       <div className="h-100">
-          <NavigationBar/>
+          <NavigationBar imgUrl={state.imgUrl} isAuth={state.isAuth}/>
           <div className="content-section">
               <Route path="/" exact render={() => <MainPage/>}/>
               <Route path="/history" render={() => <History/>}/>

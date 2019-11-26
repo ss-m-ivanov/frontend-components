@@ -8,7 +8,7 @@ let initialState = {
     isAuth: null
 };
 
-const authReducer = (state=initialState, action) => {
+export const authReducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_USER:
             return {

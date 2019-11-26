@@ -10,12 +10,14 @@ export const authAPI = {
             .then(responce => console.log(responce))
     },
     profile() {
-        console.log("111111");
-        return axios.get("http://localhost:5000/profile")
-            .then(responce => console.log(responce))
+        console.log("111111")
     },
     logout(){
-        return axios.get("http://localhost:5000/logout")
+        return axios({
+            method: 'get',
+            url: "http://localhost:5000/logout",
+            withCredentials: true
+        })
             .then(responce => console.log(responce))
     }
 };
