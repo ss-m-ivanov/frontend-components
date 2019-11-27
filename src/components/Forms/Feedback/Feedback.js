@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
-import TextArea from "../../utils/Textarea/TextArea";
+import TextArea from "../../utils/TextArea/TextArea";
 import {Button} from "react-bootstrap";
 
  const Feedback = props => {
@@ -12,9 +12,7 @@ import {Button} from "react-bootstrap";
       commentValue: '',
       commentValid: false
     });
-
-    console.log(state);
-
+    
     const handleNameChange = event => {
         const currentValue = event.target.value;
         const nameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);

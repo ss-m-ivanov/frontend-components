@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import EditProfileModal from './EditProfileModal/EditProfileModal';
 
-const Profile = () => {
+const Profile = props => {
    const [state, setState] = useState({
      userName: "John",
      userSurname: "Johnson",

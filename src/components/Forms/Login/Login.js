@@ -1,21 +1,23 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
+import {Redirect} from 'react-router-dom';
 
  const Login = props => {
     const [state, setState] = useState({
-      emailValue: '',
-      emailValid: false,
+      usernameValue: '',
+      usernameValid: false,
       passwordValue: '',
       passwordValid: false
     });
 
-    const handleEmailChange = event => {
+    const handleUsernameChange = event => {
         const currentValue = event.target.value;
-        const emailValid = props.validateValue(currentValue, /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-        props.drawBorder(event, emailValid);
+        const usernameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/)
+        props.drawBorder(event, usernameValid);
         setState(prevState => ({
-            ...prevState, emailValue: currentValue, emailValid: emailValid
+            ...prevState, usernameValue: currentValue, usernameValid: usernameValid
         }));
     };
 
@@ -30,8 +32,16 @@ import {Button, Alert} from "react-bootstrap";
 
     const handleSendData = event => {
         event.preventDefault();
-        if (state.emailValid && state.passwordValid) {
-            alert('Data is valid');
+        if (state.usernameValid && state.passwordValid) {
+          axios({ method: 'post',
+              url: "http://localhost:5000/login",
+              withCredentials: true,
+              data: {user_name: state.usernameValue, user_password: state.passwordValue}})
+              .then(response => {
+                props.activateAuthStatus();
+                props.history.push("/");
+              })
+              .catch(error => alert(error));
         }
         else {
             alert('Data is invalid');
@@ -43,11 +53,11 @@ import {Button, Alert} from "react-bootstrap";
           <h2>Login</h2>
           <form className="mb-5" onSubmit={handleSendData}>
               <Input
-                type={'email'}
-                name={'email-field'}
-                value={state.emailValue}
-                placeholder={'Enter your email'}
-                handleChange={handleEmailChange}
+                type={'text'}
+                name={'username-field'}
+                value={state.usernameValue}
+                placeholder={'Enter your username'}
+                handleChange={handleUsernameChange}
                 disableSpaces={props.disableSpaces}/>
 
               <Input
