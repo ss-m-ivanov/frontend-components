@@ -1,24 +1,84 @@
 import React, {useState} from 'react';
 import DragAndDrop from './DragAndDrop/DragAndDrop';
 import FilterFile from './FilterFile/FilterFile';
+import {GetFilterData} from "./FilterFile/Filters/Filters";
+
+console.log(GetFilterData());
 
 const FilePage = () => {
   const [state, setState] = useState({
     fileUploadStatus: false,
     fileName: '',
-    fileData: [
-      {'surname': 'Surname1', 'name': 'Name1', 'age': '17'},
-      {'surname': 'Surname1', 'name': 'Name2', 'age': '35'},
-      {'surname': 'Surname2', 'name': 'Name1', 'age': '18'},
-      {'surname': 'Surname3', 'name': 'Name3', 'age': '42'},
-      {'surname': 'Surname4', 'name': 'Name3', 'age': '23'},
-      {'surname': 'Surname1', 'name': 'Name2', 'age': '35'},
-      {'surname': 'Surname2', 'name': 'Name1', 'age': '18'},
-      {'surname': 'Surname1', 'name': 'Name1', 'age': '19'},
-      {'surname': 'Surname1', 'name': 'Name2', 'age': '25'},
-      {'surname': 'Surname2', 'name': 'Name1', 'age': '65'},
-      {'surname': 'Surname3', 'name': 'Name3', 'age': '22'}
-    ]
+    fileData: {
+      "377": {
+        "Adult_male": "True",
+        "Age": "27.0",
+        "Alive": "no",
+        "Alone": "False",
+        "Class": "First",
+        "Deck": "C",
+        "Embark_town": "Cherbourg",
+        "Embarked": "C",
+        "Fare": "211.5",
+        "Parch": "2",
+        "Pclass": "1",
+        "Sex": "male",
+        "Sibsp": "0",
+        "Survived": "0",
+        "Who": "man"
+      },
+      "607": {
+        "Adult_male": "True",
+        "Age": "27.0",
+        "Alive": "yes",
+        "Alone": "True",
+        "Class": "First",
+        "Deck": null,
+        "Embark_town": "Southampton",
+        "Embarked": "S",
+        "Fare": "30.5",
+        "Parch": "0",
+        "Pclass": "1",
+        "Sex": "male",
+        "Sibsp": "0",
+        "Survived": "1",
+        "Who": "man"
+      },
+      "681": {
+        "Adult_male": "True",
+        "Age": "27.0",
+        "Alive": "yes",
+        "Alone": "True",
+        "Class": "First",
+        "Deck": "D",
+        "Embark_town": "Cherbourg",
+        "Embarked": "C",
+        "Fare": "76.7292",
+        "Parch": "0",
+        "Pclass": "1",
+        "Sex": "male",
+        "Sibsp": "0",
+        "Survived": "1",
+        "Who": "man"
+      },
+      "724": {
+        "Adult_male": "True",
+        "Age": "27.0",
+        "Alive": "yes",
+        "Alone": "False",
+        "Class": "First",
+        "Deck": "E",
+        "Embark_town": "Southampton",
+        "Embarked": "S",
+        "Fare": "53.1",
+        "Parch": "0",
+        "Pclass": "1",
+        "Sex": "male",
+        "Sibsp": "1",
+        "Survived": "1",
+        "Who": "man"
+      }
+    }
   });
 
   const fileUploaded = event => {
@@ -28,17 +88,12 @@ const FilePage = () => {
             });
   };
 
-  const columns = [...new Set(...state.fileData.map(object => Object.keys(object)))];
-
-
-  const uniqueData = [...columns.map(column => {
-    return {name: column, values: [...new Set(state.fileData.map(object => object[column]))]};
-  })];
+  const columns = [...new Set(...Object.values(state.fileData).map(object => Object.keys(object)))];
 
   if (state.fileUploadStatus) {
     return (
       <div className="file-page w-100 h-100">
-        <FilterFile uniqueData={uniqueData} columns={columns} fileData={state.fileData} />
+        <FilterFile columns={columns} fileData={state.fileData} />
       </div>
     );
   }
@@ -52,3 +107,6 @@ const FilePage = () => {
 };
 
 export default FilePage;
+
+
+

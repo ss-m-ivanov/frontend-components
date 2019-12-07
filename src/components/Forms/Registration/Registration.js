@@ -31,7 +31,7 @@ import {Button, Alert} from "react-bootstrap";
         setState(prevState => ({
             ...prevState, emailValue: currentValue, emailValid: emailValid
         }));
-    }
+    };
 
     const handlePasswordChange = event => {
         const currentValue = event.target.value;
