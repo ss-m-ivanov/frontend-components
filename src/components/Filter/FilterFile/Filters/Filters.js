@@ -3,16 +3,6 @@ import { Button, ButtonGroup } from 'react-bootstrap';
 import AccordionElement from './AccordionElement/AccordionElement';
 import axios from 'axios'
 
-let filter_data = 1;
-
-export let GetFilterData = () => {
-    if(filter_data !== undefined && filter_data !== null){
-        return filter_data
-    } else {
-        return 'Yuo have no data here'
-    }
-
-};
 
 const Filters = props => {
 
@@ -21,32 +11,30 @@ const Filters = props => {
         method: '',
     });
 
-    const handleSubmit = event => {
-        const formData = new FormData(event.target);
-        const currentForm = {};
+    const makeRequest = (filters) => {
+        axios({
+            headers: {'Content-Type': 'form-data' },
+            method: 'put',
+            url: 'http://0.0.0.0:4100/filtering/1',
+            data: filters,
+        })
+            .then(response => {
+                let filteringResult = response.data['result'];
+                console.log(filteringResult);
+                props.responseResult(filteringResult)
+            });
+    };
 
+    const handleSubmit = event => {
         event.preventDefault();
 
-        for (let entry of formData.entries()) {
-            currentForm[entry[0]] = entry[1]
-        }
+        const formData = new FormData(event.target);
 
-        console.log(currentForm);
-        console.log('METHOD: ' + state.method);
-        setState({
-            values: currentForm
-        });
+        makeRequest(formData)
 
-
-
-        return axios({
-            headers: {'Content-Type': 'form-data' },
-            method: state.method,
-            url: 'http://0.0.0.0:4100/filtering/1',
-            data: formData,
-        }).then(response => {console.log(response.data)})
-            .then(res => filter_data=res)
     };
+
+
 
 
 
@@ -58,12 +46,9 @@ const Filters = props => {
         <Button variant="secondary">Home</Button>
         <Button variant="secondary">Save</Button>
         <button type={'submit'}
-                onClick={(event) => {
-                    setState({
-                        method: 'put'
-                    })
-                }}
-        >Filter</button>
+        >
+            Filter
+        </button>
       </ButtonGroup>
     </form>
   );
