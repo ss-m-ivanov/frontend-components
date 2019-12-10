@@ -1,33 +1,50 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import EditProfileModal from './EditProfileModal/EditProfileModal';
+import axios from "axios";
 
 const Profile = props => {
+
    const [state, setState] = useState({
-     userName: "John",
-     userSurname: "Johnson",
-     userEmail: "john.johnson@gmail.com",
-     changeName: "John",
-     changeSurname: "Johnson",
-     changeEmail: "john.johnson@gmail.com"
+       changeName: "",
+       changeSurname: "",
+       changeEmail: "",
+       changeImageUrl: ""
    });
 
    const [show, setShow] = useState(false);
+
    const handleClose = () => {
+     setState({
+       changeName: props.userName,
+       changeSurname: props.userSurname,
+       changeEmail: props.userEmail,
+       changeImageUrl: props.imgUrl
+     });
      setShow(false);
-     setState(prevState => ({
-         ...prevState, changeName: state.userName, changeSurname: state.userSurname,
-         changeEmail: state.userEmail
-     }));
+   };
+
+   const handleShow = () => {
+       setState({
+       changeName: props.userName,
+       changeSurname: props.userSurname,
+       changeEmail: props.userEmail,
+       changeImageUrl: props.imgUrl
+     });
+       setShow(true);
    }
-   const handleShow = () => setShow(true);
 
     const handleChange = event => {
         event.preventDefault();
-        setState(prevState => ({
-            ...prevState, userName: state.changeName, userSurname: state.changeSurname,
-            userEmail: state.changeEmail
-        }));
+        axios({ method: 'put',
+              url: "http://localhost:5000/profile",
+              withCredentials: true,
+              data: {user_email: state.changeEmail,
+              user_first_name: state.changeName, user_last_name: state.changeSurname, user_image_file: state.changeImageUrl}})
+              .then(response => {
+                setShow(false)
+              })
+              .catch(error => alert(error));
     }
 
     const handleChangeName = event => {
@@ -51,20 +68,27 @@ const Profile = props => {
       }));
     }
 
+    const handleChangeImageUrl = event => {
+      const currentValue = event.target.value;
+      setState(prevState => ({
+          ...prevState, changeImageUrl: currentValue
+      }));
+    };
+
     return(
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
         <div className="w-50 h-75 violet-frame bg-light">
           <div className="row w-100 h-50 m-0 p-3">
               <div className="col-4 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
-                <img className="rounded-circle h-100" src="https://uidesign.gearbest.com/gb_blog/author/Steve-Lowry-2.png" alt="User avatar"/>
+                <img className="rounded-circle h-100" src={props.imgUrl} alt="User avatar"/>
               </div>
               <div className="col- h-100 p-3 d-flex justify-content-around flex-column">
                   <h5 className="font-weight-bold">NAME:</h5>
-                  <h5>{state.userName}</h5>
+                  <h5>{props.userName}</h5>
                   <h5 className="font-weight-bold">SURNAME:</h5>
-                  <h5>{state.userSurname}</h5>
+                  <h5>{props.userSurname}</h5>
                   <h5 className="font-weight-bold">EMAIL:</h5>
-                  <h5>{state.userEmail}</h5>
+                  <h5>{props.userEmail}</h5>
               </div>
           </div>
           <div className="row w-100 h-25 m-0 p-3 d-flex justify-content-center align-items-center flex-column">
@@ -90,8 +114,8 @@ const Profile = props => {
           </div>
         </div>
         <EditProfileModal show={show} handleShow={handleShow} handleClose={handleClose}
-        handleChangeName = {handleChangeName} handleChangeSurname={handleChangeSurname} handleChangeEmail={handleChangeEmail}
-        userName={state.changeName} userSurname={state.changeSurname} userEmail={state.changeEmail} handleChange={handleChange}/>
+        handleChangeName = {handleChangeName} handleChangeSurname={handleChangeSurname} handleChangeEmail={handleChangeEmail} handleChangeImageUrl={handleChangeImageUrl}
+        userName={state.changeName} userSurname={state.changeSurname} userEmail={state.changeEmail} imgUrl={state.changeImageUrl} handleChange={handleChange}/>
       </div>
         );
 };

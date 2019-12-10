@@ -26,10 +26,19 @@ const EditProfileModal = props => {
         </InputGroup>
         <InputGroup className="mb-3">
           <FormControl aria-label="Email"
+            type="email"
             placeholder="Email"
             aria-describedby="Email-data"
             value={props.userEmail}
             onChange={props.handleChangeEmail} />
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <FormControl aria-label="Image"
+            type="url"
+            placeholder="Image"
+            aria-describedby="Image-data"
+            value={props.imgUrl}
+            onChange={props.handleChangeImageUrl} />
         </InputGroup>
         </Modal.Body>
         <Modal.Footer>

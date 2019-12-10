@@ -15,9 +15,9 @@ import './App.css';
 const App = () => {
 
   const [state, setState]= useState({
-        userName: null,
-        userSurname: null,
-        userEmail: null,
+        userName: '',
+        userSurname: '',
+        userEmail: '',
         isAuth: false,
         imgUrl: null
     });
@@ -30,8 +30,9 @@ const App = () => {
           withCredentials: true
         })
           .then(response => {
-            setState({userName: response.user_first_name, userSurname: response.user_last_name,
-          userEmail: response.user_email, imgUrl: response.user_image_file});
+              console.log(response);
+            setState({userName: response.data.user_first_name, userSurname: response.data.user_last_name,
+          userEmail: response.data.user_email, imgUrl: response.data.user_image_file, isAuth: true});
         })
           .catch(error => console.log(error))
     }, []);
@@ -52,7 +53,7 @@ const App = () => {
               <Route path="/history" render={() => <History/>}/>
               <Route path="/filter" render={() => <FilePage/>}/>
               <Route path="/login" render={() => <Forms type="login" activateAuthStatus={activateAuthStatus} history={history}/>}/>
-              <Route path="/register" render={() => <Forms type="register"/>}/>
+              <Route path="/register" render={() => <Forms type="register" history={history}/>}/>
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
               <Route path="/profile" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>

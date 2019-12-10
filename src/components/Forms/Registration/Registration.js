@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
+import axios from "axios";
 
  const Registration = props => {
     const [state, setState] = useState({
-      usernameValue: '',
-      usernameValid: false,
-      emailValue: '',
-      emailValid: false,
-      passwordValue: '',
-      passwordValid: false,
-      confirmPasswordValue: '',
-      confirmValid: false
+        usernameValue: '',
+        usernameValid: false,
+        emailValue: '',
+        emailValid: false,
+        passwordValue: '',
+        passwordValid: false,
+        confirmPasswordValue: '',
+        confirmValid: false,
+        userFirstName: '',
+        userFirstNameValid: false,
+        userLastName: '',
+        userLastNameValid: false,
+        userImage: '',
+        userImageValid: false
     });
 
     const handleUsernameChange = event => {
@@ -22,11 +29,11 @@ import {Button, Alert} from "react-bootstrap";
             ...prevState, usernameValue: currentValue, usernameValid: usernameValid
         }));
 
-    }
+    };
 
     const handleEmailChange = event => {
         const currentValue = event.target.value;
-        const emailValid = props.validateValue(currentValue, /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
+        const emailValid = props.validateValue(currentValue, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
         props.drawBorder(event, emailValid);
         setState(prevState => ({
             ...prevState, emailValue: currentValue, emailValid: emailValid
@@ -40,7 +47,7 @@ import {Button, Alert} from "react-bootstrap";
         setState(prevState => ({
             ...prevState, passwordValue: currentValue, passwordValid: passwordValid
         }));
-    }
+    };
 
     const handleConfirmPasswordChange = event => {
         const currentValue = event.target.value;
@@ -49,24 +56,65 @@ import {Button, Alert} from "react-bootstrap";
         setState(prevState => ({
             ...prevState, confirmPasswordValue: currentValue, confirmValid: confirmValid
         }));
-    }
+    };
+
+    const handleUserFisrtNameChange = event => {
+        const currentValue = event.target.value;
+        const userFirstNameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);
+        props.drawBorder(event, userFirstNameValid);
+        setState(prevState => ({
+            ...prevState, userFirstName: currentValue, userFirstNameValid: userFirstNameValid
+        }));
+
+    };
+
+    const handleUserLastNameChange = event => {
+        const currentValue = event.target.value;
+        const userLastNameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);
+        props.drawBorder(event, userLastNameValid);
+        setState(prevState => ({
+            ...prevState, userLastName: currentValue, userLastNameValid: userLastNameValid
+        }));
+
+    };
+
+    const handleUserImageChange = event => {
+        const currentValue = event.target.value;
+        const userImageValid = props.validateValue(currentValue, /^(ftp|http|https):\/\/[^ "]+$/);
+        props.drawBorder(event, userImageValid);
+        setState(prevState => ({
+            ...prevState, userImage: currentValue, userImageValid: userImageValid
+        }));
+
+    };
+
 
     const handleSendData = event => {
         event.preventDefault();
-        if (state.usernameValid & state.emailValid & state.passwordValid & state.confirmValid) {
-            alert('Data is valid');
+        if (state.usernameValid & state.emailValid & state.passwordValid
+            & state.confirmValid & state.userFirstNameValid & state.userLastNameValid & state.userImageValid) {
+            axios({ method: 'post',
+              url: "http://localhost:5000/profile",
+              withCredentials: true,
+              data: {user_name: state.usernameValue, user_password: state.passwordValue, user_email: state.emailValue,
+              user_first_name: state.userFirstName, user_last_name: state.userLastName, user_image_file: state.userImage}})
+              .then(response => {
+                props.history.push("/login");
+              })
+              .catch(error => alert(error));
         }
+
         else {
             event.preventDefault();
             alert('Data is invalid');
         }
-    }
+    };
 
     return (
       <div className="h-100 p-3 d-flex justify-content-center align-items-center flex-column">
           <h2>Registration</h2>
           <form className="mb-5" onSubmit={handleSendData}>
-              <Input
+                <Input
                 type={'username'}
                 name={'username-field'}
                 value={state.usernameValue}
@@ -97,6 +145,33 @@ import {Button, Alert} from "react-bootstrap";
                   placeholder={'Confirm your password'}
                   handleChange={handleConfirmPasswordChange}
                   disableSpaces={props.disableSpaces}/>
+
+                  <Input
+                  type={'user-first-name'}
+                  name={'user-first-name-field'}
+                  value={state.userFirstName}
+                  placeholder={'Enter your first name'}
+                  handleChange={handleUserFisrtNameChange}
+                  disableSpaces={props.disableSpaces}/>
+
+                  <Input
+                  type={'user-last-name'}
+                  name={'user-last-name-field'}
+                  value={state.userLastName}
+                  placeholder={'Enter your last name'}
+                  handleChange={handleUserLastNameChange}
+                  disableSpaces={props.disableSpaces}/>
+
+                  <Input
+                  type={'url'}
+                  name={'user-image-field'}
+                  value={state.userImage}
+                  placeholder={'Enter URL name'}
+                  handleChange={handleUserImageChange}
+                  disableSpaces={props.disableSpaces}/>
+
+
+
 
               <div className="text-center">
                   <Button type="submit">Submit</Button>
