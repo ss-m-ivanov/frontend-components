@@ -9,8 +9,7 @@ const FilePage = () => {
     fileUploadStatus: false,
     fileName: '',
     fileHeaders: '',
-    fileData: {
-    },
+    fileData: {},
     currentFileId: ''
     }
   );
@@ -26,16 +25,15 @@ const FilePage = () => {
     const file = event.target.files[0];
     let formData = new FormData();
 
-    formData.append('user_file', file)
+    formData.append('user_file', file);
 
-    let headers = ''
-    let fileData = 'hahahah'
+
     axios({
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       method: 'post',
-      url: "http://127.0.0.1:5000/files",
+      url: "http://0.0.0.0:4100/files",
       withCredentials: true,
       data: formData
     })
@@ -43,7 +41,6 @@ const FilePage = () => {
         .then(response => {
           setState({fileUploadStatus: true,
               fileName: response.data.data.file_name,
-              fileData: fileData,
               fileHeaders: response.data.filters,
               currentFileId: response.data.data.id
             });
@@ -51,7 +48,7 @@ const FilePage = () => {
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
-                url: 'http://127.0.0.1:5000/filtering/' + response.data.data.id,
+                url: 'http://0.0.0.0:4100/filtering/' + response.data.data.id,
                 data: {},
             })
                 .then(response => {

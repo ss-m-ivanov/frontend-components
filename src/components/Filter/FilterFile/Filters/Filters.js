@@ -15,7 +15,7 @@ const Filters = props => {
         axios({
             headers: {'Content-Type': 'form-data' },
             method: 'put',
-            url: 'http://127.0.0.0:5000/filtering/' + props.currentFileId,
+            url: 'http://0.0.0.0:4100/filtering/' + props.currentFileId,
             data: filters,
         })
             .then(response => {
@@ -29,7 +29,6 @@ const Filters = props => {
         event.preventDefault();
         const formData = new FormData(event.target);
         makeRequest(formData)
-
     };
 
   return(
