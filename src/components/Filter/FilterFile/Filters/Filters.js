@@ -13,9 +13,9 @@ const Filters = props => {
 
     const makeRequest = (filters) => {
         axios({
+            method: 'PUT',
+            url: 'http://0.0.0.0:80/filtering/1',
             headers: {'Content-Type': 'form-data' },
-            method: 'put',
-            url: 'http://0.0.0.0:4100/filtering/1',
             data: filters,
         })
             .then(response => {

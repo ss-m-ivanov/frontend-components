@@ -9,13 +9,14 @@ const NavigationBar = (props) => {
     const logout = () => {
       axios({
             method: 'get',
-            url: "http://localhost:5000/logout",
+            url: "0.0.0.0:80/logout",
             withCredentials: true
         })
             .then(responce => {
               props.deactivateAuthStatus();
               props.history.push("/login");
             })
+            .then(res => console.log(res))
             .catch(error => alert(error));
     }
         return (
