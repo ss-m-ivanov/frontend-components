@@ -15,7 +15,7 @@ const Filters = props => {
         axios({
             headers: {'Content-Type': 'form-data' },
             method: 'put',
-            url: 'http://0.0.0.0:4100/filtering/1',
+            url: 'http://127.0.0.0:5000/filtering/' + props.currentFileId,
             data: filters,
         })
             .then(response => {
@@ -27,16 +27,10 @@ const Filters = props => {
 
     const handleSubmit = event => {
         event.preventDefault();
-
         const formData = new FormData(event.target);
-
         makeRequest(formData)
 
     };
-
-
-
-
 
   return(
     <form onSubmit={handleSubmit} className="filters-field violet-frame bg-light w-100 h-100 p-3 overflow-auto">
