@@ -12,7 +12,7 @@ import {Button} from "react-bootstrap";
       commentValue: '',
       commentValid: false
     });
-    
+
     const handleNameChange = event => {
         const currentValue = event.target.value;
         const nameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);
@@ -53,7 +53,7 @@ import {Button} from "react-bootstrap";
     return (
       <div className="h-100 p-3 d-flex justify-content-center align-items-center flex-column">
           <h2>Feedback</h2>
-          <form onSubmit={handleSendData}>
+          <form className="w-75" onSubmit={handleSendData}>
             <Input
                 type={'name'}
                 name={'name-field'}

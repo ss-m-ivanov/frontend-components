@@ -50,15 +50,15 @@ const App = () => {
           <NavigationBar imgUrl={state.imgUrl} isAuth={state.isAuth} deactivateAuthStatus={deactivateAuthStatus} history={history}/>
           <div className="content-section">
               <Route path="/" exact render={() => <MainPage/>}/>
-              <Route path="/history" render={() => <History/>}/>
-              <Route path="/filter" render={() => <FilePage/>}/>
+              <Route path="/about" render={() => <About/>}/>
               <Route path="/login" render={() => <Forms type="login" activateAuthStatus={activateAuthStatus} history={history}/>}/>
               <Route path="/register" render={() => <Forms type="register" history={history}/>}/>
+              <Route path="/history" render={() => <History/>}/>
+              <Route path="/filter" render={() => <FilePage/>}/>
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
               <Route path="/profile" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
               <Route path="/changepassword" render={() => <Forms type="changepassword"/>}/>
-              <Route path="/about" render={() => <About/>}/>
           </div>
           <Footer/>
       </div>

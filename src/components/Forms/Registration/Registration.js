@@ -113,8 +113,8 @@ import axios from "axios";
     return (
       <div className="h-100 p-3 d-flex justify-content-center align-items-center flex-column">
           <h2>Registration</h2>
-          <form className="mb-5" onSubmit={handleSendData}>
-                <Input
+          <form className="mb-5 w-75" onSubmit={handleSendData}>
+              <Input
                 type={'username'}
                 name={'username-field'}
                 value={state.usernameValue}
