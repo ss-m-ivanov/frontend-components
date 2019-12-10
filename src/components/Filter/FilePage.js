@@ -55,7 +55,7 @@ const FilePage = () => {
   //   return (
   //     <div className="file-page w-100 h-100 d-flex align-items-center justify-content-center">
   //       <DragAndDrop fileUploaded={fileUploaded} />
-  //     </div>
+  //     </div>3*
   //   );
   // }
 };
