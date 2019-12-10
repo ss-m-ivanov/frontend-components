@@ -79,7 +79,6 @@ const FilePage = () => {
         <DragAndDrop fileUploaded={fileUploaded} />
       </div>
     );
-  }
 };
 
 export default FilePage;
