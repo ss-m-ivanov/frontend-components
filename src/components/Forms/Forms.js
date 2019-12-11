@@ -31,7 +31,7 @@ const Forms = props => {
 
     const formType = {
       'login': <Login validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder} activateAuthStatus={props.activateAuthStatus} history={props.history}/>,
-      'register': <Registration validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
+      'register': <Registration validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder} history={props.history}/>,
       'feedback': <Feedback validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'forgotpassword': <ForgotPassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>,
       'changepassword': <ChangePassword validateValue={validateValue} disableSpaces={disableSpaces} drawBorder={drawBorder}/>
