@@ -63,7 +63,6 @@ const FilePage = () => {
   };
 
   if (state.fileUploadStatus) {
-    console.log(state.fileHeaders)
     return (
       <div className="file-page w-100 h-100">
         <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse} currentFileId={state.currentFileId} />

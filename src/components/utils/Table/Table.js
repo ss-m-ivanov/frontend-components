@@ -37,7 +37,7 @@ const Table = props => {
                   Object.keys(props.fileData).map(key => {
                     return (
                         <tr>
-                          <td>{key}</td>
+                          <td>{Number(key) + 1}</td>
                           {props.columns.map(column => {
                             return (
                                 <td>{props.fileData[key][column]}</td>
