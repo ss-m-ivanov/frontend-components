@@ -21,18 +21,71 @@ const History = () => {
    }
 
    const parseFilter = filter => {
-     const f = JSON.parse(filter);
-     let keys = Object.keys(f);
-     const columns = new Set(columns.map(element => element.split(/[0-9]/).shift()));
-     // TO BE CONTINUE......
+     const parsedFilter = JSON.parse(filter);
+     const keys = Object.keys(parsedFilter);
+
+     const headers = [...new Set(keys.map(element => (element.split(/[0-9]/).shift())))];
+
+     let pairs = {}
+     const result = headers.map(header => {
+       const keysForHeader = keys.filter(key => key.startsWith(header));
+       const valuesForKey = keysForHeader.map(keyForHeader => {
+         const order = keyForHeader.match(/\d+/);
+         const content = keyForHeader.split(/\d+_/).pop();
+         pairs[header] = pairs[header] || {}
+         pairs[header][order] = pairs[header][order] || {}
+         pairs[header][order][content] = parsedFilter[keyForHeader];
+       });
+     });
+
+     // console.log(parsedFilter);
+
+     // let pairs = {}
+     //
+     // for (let header of headers) {
+     //   let counter = 1;
+     //
+     //   pairs[header] = {};
+     //   pairs[header][counter] = {}
+     //   for (let inputField in parsedFilter) {
+     //
+     //
+     //
+     //
+     //     if (inputField.includes(header)) {
+     //       console.log(inputField)
+     //       if (inputField.includes(`${counter}_value`)) {
+     //         let valueField = parsedFilter[inputField]
+     //         console.log('Value inside field is ' + valueField)
+     //         pairs[header][counter]['val'] = valueField
+     //         console.log(pairs)
+     //       }  else if (inputField.includes(`${counter}_count`)) {
+     //         let countField = parsedFilter[inputField]
+     //         console.log('Count inside field ' + countField)
+     //         pairs[header][counter]['count'] = countField
+     //       }  else {
+     //         counter++;
+     //       }
+     //     }
+     //   }
+     // }
+     //
+     //
+     //
+     //
+     //
+     // console.log(pairs)
+
+
+     //const col = headers.filter(header => keys.startsWith(header));
+     return pairs;
    }
 
    const setCurrentFilter = function(filter) {
-     console.log(filter)
+     const parsedFilter = parseFilter(filter);
      setState(prevState => ({
-       ...prevState, currentFilter: filter
+       ...prevState, currentFilter: parsedFilter
      }));
-     parseFilter(filter);
      setShow(true);
    }
 
@@ -43,14 +96,14 @@ const History = () => {
        })
          .then(response => {
             let history = response.data;
-             console.log(history);
              setState(prevState => ({
                ...prevState, history: history.map(record => ({
                     'Filename': record.path.split('/').pop(),
-                    'Filter': <button onClick={event => setCurrentFilter(record.filter)}>See filter</button>,
+                    'Filter': <button className="m-0" onClick={event => setCurrentFilter(record.filter)}>See filter</button>,
                     'Results': `${record.rows_id.length} row(s)`,
                     'Date': record.filter_date.split('T').shift(),
-                    'Time': record.filter_date.split(/[T.]/)[1]
+                    'Time': record.filter_date.split(/[T.]/)[1],
+                    'Restore': <button>Get it!</button>
                }))
              }))
        })
