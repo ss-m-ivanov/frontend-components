@@ -15,7 +15,7 @@ const Filters = props => {
         axios({
             headers: {'Content-Type': 'form-data' },
             method: 'put',
-            url: 'http://0.0.0.0:4100/filtering/' + props.currentFileId,
+            url: 'http://127.0.0.1:80/filtering/' + props.currentFileId,
             data: filters,
         })
             .then(response => {
@@ -38,10 +38,7 @@ const Filters = props => {
       <ButtonGroup aria-label="Filter menu" className="d-flex justify-content-center m-3">
         <Button variant="secondary">Home</Button>
         <Button variant="secondary">Save</Button>
-        <button type={'submit'}
-        >
-            Filter
-        </button>
+        <Button variant="secondary" type="submit">Filter</Button>
       </ButtonGroup>
     </form>
   );

@@ -10,7 +10,7 @@ const NavigationBar = (props) => {
     const logout = () => {
       axios({
             method: 'get',
-            url: "http://localhost:5000/logout",
+            url: "http://127.0.0.1:80/logout",
             withCredentials: true
         })
             .then(responce => {

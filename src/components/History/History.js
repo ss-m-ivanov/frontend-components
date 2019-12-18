@@ -6,8 +6,7 @@ import HistoryModal from "./HistoryModal/HistoryModal";
 
 const History = () => {
    const [state, setState] = useState({
-     history: {
-     },
+     history: [],
      currentFilter: ''
    });
 
@@ -86,14 +85,21 @@ const History = () => {
    }, []);
 
    const columns = [...new Set(...Object.values(state.history).map(object => Object.keys(object)))];
-
-   return (
-       <div>
-         <Table tableName="History" fileData={state.history} columns={columns} />
-         <HistoryModal show={show} handleShow={handleShow} handleClose={handleClose}
-         filter={state.currentFilter}/>
-       </div>
-   );
+   if (state.history.length) {
+     return (
+         <div>
+           <Table tableName="History" fileData={state.history} columns={columns} />
+           <HistoryModal show={show} handleShow={handleShow} handleClose={handleClose}
+           filter={state.currentFilter}/>
+         </div>
+       );
+   } else {
+     return (
+       <div className="table-field violet-frame bg-light p-3 w-100 h-100">
+        <h1 className="h-100 d-flex justify-content-center align-items-center">Your haven't any record in history :(</h1>
+      </div>
+    );
+   }
  };
 
 export default History;

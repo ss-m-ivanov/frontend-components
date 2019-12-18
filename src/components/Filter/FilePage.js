@@ -39,11 +39,13 @@ const FilePage = () => {
     })
 
         .then(response => {
-          setState({fileUploadStatus: true,
+          setState(prevState => ({
+              ...prevState,
+              fileUploadStatus: true,
               fileName: response.data.data.file_name,
               fileHeaders: response.data.filters,
               currentFileId: response.data.data.id
-            });
+            }));
 
             axios({
                 headers: {'Content-Type': 'form-data' },
@@ -60,7 +62,6 @@ const FilePage = () => {
                 });
         })
         .catch(error => {
-          console.log('Here!')
           const notificationId = store.addNotification({
             title: "Error!",
             message: `${error}`,
@@ -74,7 +75,6 @@ const FilePage = () => {
               onScreen: true
             }
           });
-          document.getElementById("file-upload-form").reset();
         });
   };
 
