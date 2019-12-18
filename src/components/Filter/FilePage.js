@@ -51,6 +51,7 @@ const FilePage = () => {
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
                 url: 'http://127.0.0.1:80/filtering/' + response.data.data.id,
+                withCredentials: true,
                 data: {},
             })
                 .then(response => {
