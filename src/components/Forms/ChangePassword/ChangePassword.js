@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
+import { store } from 'react-notifications-component';
 import {Button, Alert} from "react-bootstrap";
 
  const ChangePassword = props => {
@@ -44,10 +45,21 @@ import {Button, Alert} from "react-bootstrap";
         event.preventDefault();
         if (state.currentPasswordValid & state.passwordValid & state.confirmValid) {
             alert('Data is valid');
-        }
-        else {
+        } else {
             event.preventDefault();
-            alert('Data is invalid');
+            store.addNotification({
+              title: "Error!",
+              message: 'Invalid input data!',
+              type: "danger",
+              insert: "bottom",
+              container: "bottom-right",
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 5000,
+                onScreen: true
+              }
+            });
         }
     }
 

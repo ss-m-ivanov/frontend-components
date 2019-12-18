@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
+import { store } from 'react-notifications-component';
 import EditProfileModal from './EditProfileModal/EditProfileModal';
 import axios from "axios";
 
@@ -36,15 +37,50 @@ const Profile = props => {
 
     const handleChange = event => {
         event.preventDefault();
-        axios({ method: 'put',
-              url: "http://localhost:5000/profile",
-              withCredentials: true,
-              data: {user_email: state.changeEmail,
-              user_first_name: state.changeName, user_last_name: state.changeSurname, user_image_file: state.changeImageUrl}})
-              .then(response => {
-                setShow(false)
-              })
-              .catch(error => alert(error));
+
+        const isImageUrl = require('is-image-url');
+        const userImageValid = isImageUrl(state.changeImageUrl);
+        if (userImageValid) {
+          axios({ method: 'put',
+                url: "http://127.0.0.1:80/profile",
+                withCredentials: true,
+                data: {user_email: state.changeEmail,
+                user_first_name: state.changeName, user_last_name: state.changeSurname, user_image_file: state.changeImageUrl}})
+                .then(response => {
+                  setShow(false)
+                })
+                .catch(error => {
+                  let id = store.addNotification({
+                    title: "Error!",
+                    message: `${error}`,
+                    type: "danger",
+                    insert: "bottom",
+                    container: "bottom-right",
+                    animationIn: ["animated", "fadeIn"],
+                    animationOut: ["animated", "fadeOut"],
+                    dismiss: {
+                      duration: 5000,
+                      onScreen: true
+                    }
+                  });
+                  store.removeNotification(id);
+                });
+        } else {
+          store.addNotification({
+            title: "Error!",
+            message: 'Image URL error!',
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
+        }
+
     }
 
     const handleChangeName = event => {
@@ -75,12 +111,16 @@ const Profile = props => {
       }));
     };
 
+    const getDefaultImage = event => {
+        event.target.src = 'https://elysator.com/wp-content/uploads/blank-profile-picture-973460_1280-e1523978675847.png'
+    }
+
     return(
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
         <div className="w-50 h-75 violet-frame bg-light">
           <div className="row w-100 h-50 m-0 p-3">
               <div className="col-4 h-100 p-0 m-0 d-flex justify-content-center align-items-center">
-                <img className="rounded-circle h-100" src={props.imgUrl} alt="User avatar"/>
+                <img onError={getDefaultImage} className="rounded-circle h-100" src={props.imgUrl} alt="User avatar"/>
               </div>
               <div className="col- h-100 p-3 d-flex justify-content-around flex-column">
                   <h5 className="font-weight-bold">NAME:</h5>

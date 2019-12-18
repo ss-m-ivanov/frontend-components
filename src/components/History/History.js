@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { store } from 'react-notifications-component';
 import Table from "../utils/Table/Table";
 import HistoryModal from "./HistoryModal/HistoryModal";
 
@@ -38,46 +39,6 @@ const History = () => {
        });
      });
 
-     // console.log(parsedFilter);
-
-     // let pairs = {}
-     //
-     // for (let header of headers) {
-     //   let counter = 1;
-     //
-     //   pairs[header] = {};
-     //   pairs[header][counter] = {}
-     //   for (let inputField in parsedFilter) {
-     //
-     //
-     //
-     //
-     //     if (inputField.includes(header)) {
-     //       console.log(inputField)
-     //       if (inputField.includes(`${counter}_value`)) {
-     //         let valueField = parsedFilter[inputField]
-     //         console.log('Value inside field is ' + valueField)
-     //         pairs[header][counter]['val'] = valueField
-     //         console.log(pairs)
-     //       }  else if (inputField.includes(`${counter}_count`)) {
-     //         let countField = parsedFilter[inputField]
-     //         console.log('Count inside field ' + countField)
-     //         pairs[header][counter]['count'] = countField
-     //       }  else {
-     //         counter++;
-     //       }
-     //     }
-     //   }
-     // }
-     //
-     //
-     //
-     //
-     //
-     // console.log(pairs)
-
-
-     //const col = headers.filter(header => keys.startsWith(header));
      return pairs;
    }
 
@@ -91,7 +52,7 @@ const History = () => {
 
    useEffect (() => {
      axios({ method: 'get',
-         url: "http://localhost:5000/history/user",
+         url: "http://127.0.0.1:80/history/user",
          withCredentials: true
        })
          .then(response => {
@@ -107,7 +68,21 @@ const History = () => {
                }))
              }))
        })
-         .catch(error => console.log(error))
+         .catch(error => {
+           store.addNotification({
+             title: "Error!",
+             message: `${error}`,
+             type: "danger",
+             insert: "bottom",
+             container: "bottom-right",
+             animationIn: ["animated", "fadeIn"],
+             animationOut: ["animated", "fadeOut"],
+             dismiss: {
+               duration: 5000,
+               onScreen: true
+             }
+           });
+         });
    }, []);
 
    const columns = [...new Set(...Object.values(state.history).map(object => Object.keys(object)))];

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Input from "../../utils/Input/Input";
+import { store } from 'react-notifications-component';
 import {Button, Alert} from "react-bootstrap";
 import {Redirect} from 'react-router-dom';
 
@@ -34,7 +35,7 @@ import {Redirect} from 'react-router-dom';
         event.preventDefault();
         if (state.usernameValid && state.passwordValid) {
           axios({ method: 'post',
-              url: "http://localhost:5000/login",
+              url: "http://127.0.0.1:80/login",
               withCredentials: true,
               data: {user_name: state.usernameValue, user_password: state.passwordValue}})
               .then(response => {
@@ -44,7 +45,19 @@ import {Redirect} from 'react-router-dom';
               .catch(error => alert(error));
         }
         else {
-            alert('Data is invalid');
+          store.addNotification({
+            title: "Error!",
+            message: 'Invalid input data',
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
         }
     }
 

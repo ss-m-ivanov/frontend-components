@@ -12,7 +12,7 @@ const DragAndDrop = props => {
               </div>
               <h1 className="my-4">Choose file or drag in here.</h1>
           </div>
-          <form onChange={props.fileUploaded} className="file-upload-form">
+          <form id="file-upload-form" onChange={props.fileUploaded} className="file-upload-form">
               <input className="w-100 h-100" type="file" name="user_file" accept=".xls,.xlsx,.csv"/>
           </form>
       </div>

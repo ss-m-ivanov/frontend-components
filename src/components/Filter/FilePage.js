@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { store } from 'react-notifications-component';
 import DragAndDrop from './DragAndDrop/DragAndDrop';
 import FilterFile from './FilterFile/FilterFile';
 
@@ -27,13 +28,12 @@ const FilePage = () => {
 
     formData.append('user_file', file);
 
-
     axios({
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       method: 'post',
-      url: "http://0.0.0.0:4100/files",
+      url: "http://127.0.0.1:80/files",
       withCredentials: true,
       data: formData
     })
@@ -48,7 +48,7 @@ const FilePage = () => {
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
-                url: 'http://0.0.0.0:4100/filtering/' + response.data.data.id,
+                url: 'http://127.0.0.1:80/filtering/' + response.data.data.id,
                 data: {},
             })
                 .then(response => {
@@ -59,7 +59,23 @@ const FilePage = () => {
                     }))
                 });
         })
-        .catch(error => alert(error));
+        .catch(error => {
+          console.log('Here!')
+          const notificationId = store.addNotification({
+            title: "Error!",
+            message: `${error}`,
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
+          document.getElementById("file-upload-form").reset();
+        });
   };
 
   if (state.fileUploadStatus) {
