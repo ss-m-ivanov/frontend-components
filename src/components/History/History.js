@@ -51,7 +51,7 @@ const History = () => {
 
    useEffect (() => {
      axios({ method: 'get',
-         url: "http://127.0.0.1:80/history/user",
+         url: "http://0.0.0.0:80/history/user",
          withCredentials: true
        })
          .then(response => {

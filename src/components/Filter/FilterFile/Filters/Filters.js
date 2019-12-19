@@ -14,14 +14,18 @@ const Filters = props => {
     const makeRequest = (filters) => {
         axios({
             headers: {'Content-Type': 'form-data' },
-            method: 'put',
+            method: state.method,
             url: 'http://0.0.0.0:80/filtering/' + props.currentFileId,
             data: filters,
         })
             .then(response => {
-                let filteringResult = response.data['result'];
-                console.log(filteringResult);
-                props.responseResult(filteringResult)
+                if (state.method === 'put') {
+                    let filteringResult = response.data['result'];
+                    console.log(filteringResult);
+                    props.responseResult(filteringResult)
+                }   else {
+                    console.log('post success')
+                }
             });
     };
 
@@ -31,14 +35,20 @@ const Filters = props => {
         makeRequest(formData)
     };
 
+    const changeMethod = (event, method) => {
+        setState(prevState =>({
+            ...prevState, method: method
+        }));
+    }
+
   return(
     <form onSubmit={handleSubmit} className="filters-field violet-frame bg-light w-100 h-100 p-3 overflow-auto">
       <h2 className="d-flex justify-content-center m-3">Filters</h2>
       <AccordionElement columns={props.columns} />
       <ButtonGroup aria-label="Filter menu" className="d-flex justify-content-center m-3">
         <Button variant="secondary">Home</Button>
-        <Button variant="secondary">Save</Button>
-        <Button variant="secondary" type="submit">Filter</Button>
+        <Button variant="secondary" type="submit" onClick={event => changeMethod(event, 'post')}>Save</Button>
+        <Button variant="secondary" type="submit" onClick={event => changeMethod(event, 'put')}>Filter</Button>
       </ButtonGroup>
     </form>
   );
