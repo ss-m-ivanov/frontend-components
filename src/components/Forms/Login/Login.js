@@ -34,7 +34,7 @@ import {Redirect} from 'react-router-dom';
         event.preventDefault();
         if (state.usernameValid && state.passwordValid) {
           axios({ method: 'post',
-              url: "http://localhost:5000/login",
+              url: "http://0.0.0.0:80/login",
               withCredentials: true,
               data: {user_name: state.usernameValue, user_password: state.passwordValue}})
               .then(response => {

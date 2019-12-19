@@ -32,19 +32,27 @@ const Profile = props => {
        changeImageUrl: props.imgUrl
      });
        setShow(true);
-   }
+   };
 
     const handleChange = event => {
         event.preventDefault();
-        axios({ method: 'put',
-              url: "http://localhost:5000/profile",
-              withCredentials: true,
-              data: {user_email: state.changeEmail,
-              user_first_name: state.changeName, user_last_name: state.changeSurname, user_image_file: state.changeImageUrl}})
+
+        console.log('STATE IS TO CHANGE: ', state);
+        axios({
+            method: 'put',
+            url: "http://0.0.0.0:80/profile",
+            withCredentials: true,
+            data: {
+                    user_email: state.changeEmail,
+                    user_first_name: state.changeName,
+                    user_last_name: state.changeSurname,
+                    user_image_file: state.changeImageUrl
+            }})
               .then(response => {
                 setShow(false)
               })
               .catch(error => alert(error));
+
     }
 
     const handleChangeName = event => {

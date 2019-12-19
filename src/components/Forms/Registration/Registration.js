@@ -94,7 +94,7 @@ import axios from "axios";
         if (state.usernameValid & state.emailValid & state.passwordValid
             & state.confirmValid & state.userFirstNameValid & state.userLastNameValid & state.userImageValid) {
             axios({ method: 'post',
-              url: "http://localhost:5000/profile",
+              url: "http://0.0.0.0:80/profile",
               withCredentials: true,
               data: {user_name: state.usernameValue, user_password: state.passwordValue, user_email: state.emailValue,
               user_first_name: state.userFirstName, user_last_name: state.userLastName, user_image_file: state.userImage}})

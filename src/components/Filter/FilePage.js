@@ -27,28 +27,32 @@ const FilePage = () => {
 
     formData.append('user_file', file);
 
-
+    let fileData= {};
     axios({
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       method: 'post',
-      url: "http://0.0.0.0:4100/files",
+      url: "http://0.0.0.0:80/files",
       withCredentials: true,
       data: formData
     })
 
         .then(response => {
-          setState({fileUploadStatus: true,
+          setState(prevState => ({
+              ...prevState,
+              fileUploadStatus: true,
               fileName: response.data.data.file_name,
               fileHeaders: response.data.filters,
-              currentFileId: response.data.data.id
-            });
+              currentFileId: response.data.data.id,
+              fileData: fileData
+            }));
+            console.log(response)
 
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
-                url: 'http://0.0.0.0:4100/filtering/' + response.data.data.id,
+                url: 'http://0.0.0.0:80/filtering/' + response.data.data.id,
                 data: {},
             })
                 .then(response => {

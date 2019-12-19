@@ -15,7 +15,7 @@ const Filters = props => {
         axios({
             headers: {'Content-Type': 'form-data' },
             method: 'put',
-            url: 'http://0.0.0.0:4100/filtering/' + props.currentFileId,
+            url: 'http://0.0.0.0:80/filtering/' + props.currentFileId,
             data: filters,
         })
             .then(response => {

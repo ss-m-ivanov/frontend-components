@@ -9,7 +9,7 @@ const NavigationBar = (props) => {
     const logout = () => {
       axios({
             method: 'get',
-            url: "http://localhost:5000/logout",
+            url: "http://0.0.0.0:80/logout",
             withCredentials: true
         })
             .then(responce => {
@@ -35,7 +35,7 @@ const NavigationBar = (props) => {
                                     <Nav.Link href="#"><NavLink to={"/feedback"}>Feedback</NavLink></Nav.Link>
                                     <Nav.Link href="#" onClick={event => logout()}><NavLink to={"/"}>Logout</NavLink></Nav.Link>
                                     <Nav.Link className="p-0 ml-2" href="#">
-                                      <NavLink to={"/profile"}>
+                                      <NavLink to={"/profiles"}>
                                       <div>
                                       <img src={props.imgUrl} width="40" alt="User`s avatar" className="rounded-circle"/>
                                       </div>

@@ -26,7 +26,7 @@ const App = () => {
 
     useEffect (() => {
       axios({ method: 'get',
-          url: "http://localhost:5000/profile",
+          url: "http://0.0.0.0:80/profile",
           withCredentials: true
         })
           .then(response => {
@@ -57,7 +57,7 @@ const App = () => {
               <Route path="/filter" render={() => <FilePage/>}/>
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
-              <Route path="/profile" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
+              <Route path="/profiles" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
               <Route path="/changepassword" render={() => <Forms type="changepassword"/>}/>
           </div>
           <Footer/>
