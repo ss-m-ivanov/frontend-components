@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Route, useHistory} from "react-router-dom";
 import axios from 'axios';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import MainPage from "./components/MainPage/MainPage";
 import NavigationBar from "./components/NaviganationBar/NavigationBar";
 import Footer from "./components/Footer/Footer";
@@ -34,7 +36,7 @@ const App = () => {
             setState({userName: response.data.user_first_name, userSurname: response.data.user_last_name,
           userEmail: response.data.user_email, imgUrl: response.data.user_image_file, isAuth: true});
         })
-          .catch(error => console.log(error))
+          .catch(error => error)
     }, []);
 
   const activateAuthStatus = () => {
@@ -47,6 +49,7 @@ const App = () => {
 
   return (
       <div className="h-100">
+          <ReactNotification />
           <NavigationBar imgUrl={state.imgUrl} isAuth={state.isAuth} deactivateAuthStatus={deactivateAuthStatus} history={history}/>
           <div className="content-section">
               <Route path="/" exact render={() => <MainPage/>}/>
@@ -57,7 +60,7 @@ const App = () => {
               <Route path="/filter" render={() => <FilePage/>}/>
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
-              <Route path="/profiles" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
+              <Route path="/profile" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
               <Route path="/changepassword" render={() => <Forms type="changepassword"/>}/>
           </div>
           <Footer/>

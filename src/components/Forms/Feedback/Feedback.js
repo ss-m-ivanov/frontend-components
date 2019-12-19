@@ -15,7 +15,7 @@ import {Button} from "react-bootstrap";
 
     const handleNameChange = event => {
         const currentValue = event.target.value;
-        const nameValid = props.validateValue(currentValue, /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);
+        const nameValid = props.validateValue(currentValue, /^(?=.{4,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/);
         props.drawBorder(event, nameValid);
         setState(prevState => ({
             ...prevState, nameValue: currentValue, nameValid: nameValid
@@ -40,20 +40,10 @@ import {Button} from "react-bootstrap";
         }))
     }
 
-    const handleSendData = event => {
-        event.preventDefault();
-        if (state.nameValid && state.emailValid && state.commentValid) {
-            alert('Data is valid');
-        }
-        else {
-            alert('Data is invalid');
-        }
-    }
-
     return (
       <div className="h-100 p-3 d-flex justify-content-center align-items-center flex-column">
           <h2>Feedback</h2>
-          <form className="w-75" onSubmit={handleSendData}>
+          <form action="https://formspree.io/valentyn17@gmail.com" method="POST" className="w-75">
             <Input
                 type={'name'}
                 name={'name-field'}

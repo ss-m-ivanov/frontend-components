@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Input from "../../utils/Input/Input";
+import { store } from 'react-notifications-component';
 import {Button, Alert} from "react-bootstrap";
 import {Redirect} from 'react-router-dom';
 
@@ -44,7 +45,19 @@ import {Redirect} from 'react-router-dom';
               .catch(error => alert(error));
         }
         else {
-            alert('Data is invalid');
+          store.addNotification({
+            title: "Error!",
+            message: 'Invalid input data',
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
         }
     }
 

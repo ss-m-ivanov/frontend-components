@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { store } from 'react-notifications-component';
 import DragAndDrop from './DragAndDrop/DragAndDrop';
 import FilterFile from './FilterFile/FilterFile';
 
@@ -47,12 +48,12 @@ const FilePage = () => {
               currentFileId: response.data.data.id,
               fileData: fileData
             }));
-            console.log(response)
 
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
                 url: 'http://0.0.0.0:80/filtering/' + response.data.data.id,
+                withCredentials: true,
                 data: {},
             })
                 .then(response => {
@@ -63,11 +64,24 @@ const FilePage = () => {
                     }))
                 });
         })
-        .catch(error => alert(error));
+        .catch(error => {
+          const notificationId = store.addNotification({
+            title: "Error!",
+            message: `${error}`,
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
+        });
   };
 
   if (state.fileUploadStatus) {
-    console.log(state.fileHeaders)
     return (
       <div className="file-page w-100 h-100">
         <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse} currentFileId={state.currentFileId} />

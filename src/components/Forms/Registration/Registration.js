@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
+import { store } from 'react-notifications-component';
 import axios from "axios";
 
  const Registration = props => {
@@ -80,7 +81,8 @@ import axios from "axios";
 
     const handleUserImageChange = event => {
         const currentValue = event.target.value;
-        const userImageValid = props.validateValue(currentValue, /^(ftp|http|https):\/\/[^ "]+$/);
+        const isImageUrl = require('is-image-url');
+        const userImageValid = isImageUrl(currentValue);
         props.drawBorder(event, userImageValid);
         setState(prevState => ({
             ...prevState, userImage: currentValue, userImageValid: userImageValid
@@ -101,19 +103,43 @@ import axios from "axios";
               .then(response => {
                 props.history.push("/login");
               })
-              .catch(error => alert(error));
-        }
-
-        else {
+              .catch(error => {
+                store.addNotification({
+                title: "Error!",
+                message: `${error}`,
+                type: "danger",
+                insert: "bottom",
+                container: "bottom-right",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  onScreen: true
+                }
+              });
+            })
+        } else {
             event.preventDefault();
-            alert('Data is invalid');
+            store.addNotification({
+            title: "Error!",
+            message: `Invalid input data`,
+            type: "danger",
+            insert: "bottom",
+            container: "bottom-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true
+            }
+          });
         }
     };
 
     return (
       <div className="h-100 p-3 d-flex justify-content-center align-items-center flex-column">
           <h2>Registration</h2>
-          <form className="mb-5 w-75" onSubmit={handleSendData}>
+          <form className="mb-5 w-75 overflow-auto" onSubmit={handleSendData}>
               <Input
                 type={'username'}
                 name={'username-field'}

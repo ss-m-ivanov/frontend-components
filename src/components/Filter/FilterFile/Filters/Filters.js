@@ -38,10 +38,7 @@ const Filters = props => {
       <ButtonGroup aria-label="Filter menu" className="d-flex justify-content-center m-3">
         <Button variant="secondary">Home</Button>
         <Button variant="secondary">Save</Button>
-        <button type={'submit'}
-        >
-            Filter
-        </button>
+        <Button variant="secondary" type="submit">Filter</Button>
       </ButtonGroup>
     </form>
   );
