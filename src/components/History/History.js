@@ -41,6 +41,31 @@ const History = () => {
      return pairs;
    }
 
+   const restoreFile = (file_id, filter_id) => {
+        axios({ method: 'get',
+         url: `http://0.0.0.0:80/generate_new_file/file/${file_id}/filter/${filter_id}`,
+         withCredentials: true
+       })
+         .then(response => {
+            console.log("Haha_benis")
+       })
+         .catch(error => {
+           store.addNotification({
+             title: "Error!",
+             message: `${error}`,
+             type: "danger",
+             insert: "bottom",
+             container: "bottom-right",
+             animationIn: ["animated", "fadeIn"],
+             animationOut: ["animated", "fadeOut"],
+             dismiss: {
+               duration: 5000,
+               onScreen: true
+             }
+           });
+         });
+   }
+
    const setCurrentFilter = function(filter) {
      const parsedFilter = parseFilter(filter);
      setState(prevState => ({
@@ -63,7 +88,7 @@ const History = () => {
                     'Results': `${record.rows_id.length} row(s)`,
                     'Date': record.filter_date.split('T').shift(),
                     'Time': record.filter_date.split(/[T.]/)[1],
-                    'Restore': <button>Get it!</button>
+                    'Restore': <button onClick={event => restoreFile(record.file_id, record.filter_id)}>Get it!</button>
                }))
              }))
        })

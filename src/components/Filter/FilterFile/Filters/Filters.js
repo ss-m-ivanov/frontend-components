@@ -16,6 +16,7 @@ const Filters = props => {
             headers: {'Content-Type': 'form-data' },
             method: state.method,
             url: 'http://0.0.0.0:80/filtering/' + props.currentFileId,
+            withCredentials: true,
             data: filters,
         })
             .then(response => {
