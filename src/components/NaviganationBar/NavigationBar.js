@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import { store } from 'react-notifications-component';
+import notificationObject from '../utils/Notification/Notification';
 import axios from 'axios';
 
 
@@ -19,17 +20,10 @@ const NavigationBar = (props) => {
             })
             .catch(error => {
               store.addNotification({
+                ...notificationObject,
                 title: "Error!",
                 message: `${error}`,
                 type: "danger",
-                insert: "bottom",
-                container: "bottom-right",
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 5000,
-                  onScreen: true
-                }
               });
             });
     }

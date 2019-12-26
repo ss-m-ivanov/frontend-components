@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Route, useHistory} from "react-router-dom";
+import { store } from 'react-notifications-component';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import MainPage from "./components/MainPage/MainPage";
 import NavigationBar from "./components/NaviganationBar/NavigationBar";
+import notificationObject from './components/utils/Notification/Notification';
 import Footer from "./components/Footer/Footer";
 import History from "./components/History/History";
 import FilePage from "./components/Filter/FilePage";
@@ -32,11 +34,18 @@ const App = () => {
           withCredentials: true
         })
           .then(response => {
-              console.log(response);
             setState({userName: response.data.user_first_name, userSurname: response.data.user_last_name,
           userEmail: response.data.user_email, imgUrl: response.data.user_image_file, isAuth: true});
         })
-          .catch(error => error)
+        .catch(error => {
+          store.addNotification({
+            ...notificationObject,
+            title: "Error!",
+            message: `${error}`,
+            type: "danger"
+            }
+          );
+        })
     }, []);
 
   const activateAuthStatus = () => {
@@ -64,6 +73,7 @@ const App = () => {
               <Route path="/changepassword" render={() => <Forms type="changepassword"/>}/>
           </div>
           <Footer/>
+
       </div>
   );
 };

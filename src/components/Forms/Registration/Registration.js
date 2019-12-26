@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Input from "../../utils/Input/Input";
 import {Button, Alert} from "react-bootstrap";
 import { store } from 'react-notifications-component';
+import notificationObject from '../../utils/Notification/Notification';
 import axios from "axios";
 
  const Registration = props => {
@@ -105,33 +106,19 @@ import axios from "axios";
               })
               .catch(error => {
                 store.addNotification({
+                ...notificationObject,
                 title: "Error!",
                 message: `${error}`,
                 type: "danger",
-                insert: "bottom",
-                container: "bottom-right",
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 5000,
-                  onScreen: true
-                }
               });
             })
         } else {
             event.preventDefault();
             store.addNotification({
+            ...notificationObject,
             title: "Error!",
             message: `Invalid input data`,
             type: "danger",
-            insert: "bottom",
-            container: "bottom-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
           });
         }
     };

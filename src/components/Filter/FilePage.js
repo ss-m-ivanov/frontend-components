@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { store } from 'react-notifications-component';
 import DragAndDrop from './DragAndDrop/DragAndDrop';
+import notificationObject from '../utils/Notification/Notification';
 import FilterFile from './FilterFile/FilterFile';
 
 import axios from 'axios'
@@ -11,7 +12,7 @@ const FilePage = () => {
     fileName: '',
     fileHeaders: '',
     fileData: {},
-    currentFileId: ''
+    currentFileId: '',
     }
   );
 
@@ -38,7 +39,6 @@ const FilePage = () => {
       withCredentials: true,
       data: formData
     })
-
         .then(response => {
           setState(prevState => ({
               ...prevState,
@@ -49,6 +49,7 @@ const FilePage = () => {
               fileData: fileData
             }));
 
+
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
@@ -58,7 +59,6 @@ const FilePage = () => {
             })
                 .then(response => {
                     let filteringResult = response.data['result'];
-                    console.log(filteringResult);
                     setState(prevState => ({
                       ...prevState, fileData: filteringResult
                     }))
@@ -66,17 +66,10 @@ const FilePage = () => {
         })
         .catch(error => {
           const notificationId = store.addNotification({
+            ...notificationObject,
             title: "Error!",
             message: `${error}`,
-            type: "danger",
-            insert: "bottom",
-            container: "bottom-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
+            type: "danger"
           });
         });
   };
@@ -84,7 +77,7 @@ const FilePage = () => {
   if (state.fileUploadStatus) {
     return (
       <div className="file-page w-100 h-100">
-        <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse} currentFileId={state.currentFileId} />
+          <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse} currentFileId={state.currentFileId} />
       </div>
     );
   }

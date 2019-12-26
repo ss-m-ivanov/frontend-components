@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import Input from "../../utils/Input/Input";
 import { store } from 'react-notifications-component';
+import notificationObject from '../../utils/Notification/Notification';
 import {Button, Alert} from "react-bootstrap";
 import {Redirect} from 'react-router-dom';
 
@@ -42,7 +43,15 @@ import {Redirect} from 'react-router-dom';
                 props.activateAuthStatus();
                 props.history.push("/");
               })
-              .catch(error => alert(error));
+              .catch(error => {
+                store.addNotification({
+                  ...notificationObject,
+                  title: "Error!",
+                  message: `${error}`,
+                  type: "danger"
+                  }
+                );
+              });
         }
         else {
           store.addNotification({

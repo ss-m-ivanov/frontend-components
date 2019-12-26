@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { store } from 'react-notifications-component';
 import EditProfileModal from './EditProfileModal/EditProfileModal';
+import notificationObject from '../utils/Notification/Notification';
 import axios from "axios";
 
 const Profile = props => {
@@ -51,33 +52,20 @@ const Profile = props => {
                 })
                 .catch(error => {
                   let id = store.addNotification({
+                    ...notificationObject,
                     title: "Error!",
                     message: `${error}`,
                     type: "danger",
-                    insert: "bottom",
-                    container: "bottom-right",
-                    animationIn: ["animated", "fadeIn"],
-                    animationOut: ["animated", "fadeOut"],
-                    dismiss: {
-                      duration: 5000,
-                      onScreen: true
-                    }
                   });
                   store.removeNotification(id);
                 });
         } else {
           store.addNotification({
+            ...notificationObject,
             title: "Error!",
             message: 'Image URL error!',
             type: "danger",
             insert: "bottom",
-            container: "bottom-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
           });
         }
 

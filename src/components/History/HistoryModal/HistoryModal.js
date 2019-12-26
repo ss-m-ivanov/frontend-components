@@ -2,7 +2,21 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 const HistoryModal = props => {
-  console.log(props.filter);
+
+  const getNonEmptyKeys = () => {
+    const nonEmptyKeys = Object.keys(props.filter).filter(key => {
+      const nonEmptyValues = Object.keys(props.filter[key]).filter(order => {
+      const value = props.filter[key][order]['value'];
+      const count = props.filter[key][order]['count'];
+      return (value && count) ? true : false;
+    });
+    return (nonEmptyValues.length) ? true : false;
+  });
+    return nonEmptyKeys;
+  }
+
+  const nonEmptyKeys = getNonEmptyKeys();
+
   return (
     <div>
       <Modal show={props.show} onHide={props.handleClose} centered>
@@ -10,16 +24,21 @@ const HistoryModal = props => {
           <Modal.Title>Filter</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {Object.keys(props.filter).map(key => (
-            <div>
-              <p className="text-center h4">{key}</p>
-              {Object.keys(props.filter[key]).map(order => {
-                const value = props.filter[key][order]['value'];
-                const count = props.filter[key][order]['count'];
+        <div>
+        {nonEmptyKeys.map(key => (
+          <div className="w-100 h-100 overflow-auto">
+            <p className="h4">{key}:</p>
+            {Object.keys(props.filter[key]).map(order => {
+              const value = props.filter[key][order]['value'];
+              const count = props.filter[key][order]['count'];
+              if (value && count) {
                 return (<p>{`${value ? `Value: ${value}` : ''} ${count ? `Count: ${count}` : ''}`}</p>)
-              })}
-            </div>
-          ))}
+              }
+              return null
+            })}
+          </div>
+        ))}
+        </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>

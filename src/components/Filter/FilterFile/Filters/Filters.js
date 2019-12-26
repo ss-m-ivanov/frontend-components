@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import AccordionElement from './AccordionElement/AccordionElement';
+import { store } from 'react-notifications-component';
+import notificationObject from '../../../utils/Notification/Notification';
 import axios from 'axios'
 
 
@@ -27,6 +29,14 @@ const Filters = props => {
                 }   else {
                     console.log('post success')
                 }
+            })
+            .catch(error => {
+              store.addNotification({
+                ...notificationObject,
+                title: "Error!",
+                message: `${error}`,
+                type: "danger"
+              });
             });
     };
 
