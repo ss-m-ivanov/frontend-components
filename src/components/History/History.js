@@ -13,7 +13,7 @@ const History = () => {
 
    useEffect (() => {
      axios({ method: 'get',
-         url: "http://0.0.0.0:80/history/user",
+         url: "http://0.0.0.0:80/history-service/api/history/user",
          withCredentials: true
        })
          .then(response => {
@@ -71,7 +71,7 @@ const History = () => {
 
    const restoreFile = (file_id, filter_id) => {
         axios({ method: 'get',
-         url: `http://0.0.0.0:80/generate_new_file/file/${file_id}/filter/${filter_id}`,
+         url: `http://0.0.0.0:80/file-generation/api/generate_new_file/file/${file_id}/filter/${filter_id}`,
          withCredentials: true
        })
          .then(response => {

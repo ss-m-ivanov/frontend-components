@@ -30,22 +30,14 @@ const App = () => {
 
     useEffect (() => {
       axios({ method: 'get',
-          url: "http://0.0.0.0:80/profile",
+          url: "http://0.0.0.0:80/user-service/api/profile",
           withCredentials: true
         })
           .then(response => {
             setState({userName: response.data.user_first_name, userSurname: response.data.user_last_name,
           userEmail: response.data.user_email, imgUrl: response.data.user_image_file, isAuth: true});
         })
-        .catch(error => {
-          store.addNotification({
-            ...notificationObject,
-            title: "Error!",
-            message: `${error}`,
-            type: "danger"
-            }
-          );
-        })
+        .catch(error => error)
     }, []);
 
   const activateAuthStatus = () => {

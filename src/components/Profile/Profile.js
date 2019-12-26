@@ -43,7 +43,7 @@ const Profile = props => {
         const userImageValid = isImageUrl(state.changeImageUrl);
         if (userImageValid) {
           axios({ method: 'put',
-                url: "http://0.0.0.0:80/profile",
+                url: "http://0.0.0.0:80/user-service/api/profile",
                 withCredentials: true,
                 data: {user_email: state.changeEmail,
                 user_first_name: state.changeName, user_last_name: state.changeSurname, user_image_file: state.changeImageUrl}})

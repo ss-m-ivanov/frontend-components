@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { Component } from 'react'
 import {Nav, Navbar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import { store } from 'react-notifications-component';
@@ -11,7 +11,7 @@ const NavigationBar = (props) => {
     const logout = () => {
       axios({
             method: 'get',
-            url: "http://0.0.0.0:80/logout",
+            url: "http://0.0.0.0:80/user-service/api/logout",
             withCredentials: true
         })
             .then(responce => {

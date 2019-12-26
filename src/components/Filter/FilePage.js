@@ -35,7 +35,7 @@ const FilePage = () => {
         'Content-Type': 'multipart/form-data'
       },
       method: 'post',
-      url: "http://127.0.0.1:80/files",
+      url: "http://0.0.0.0:80/file-service/api/files",
       withCredentials: true,
       data: formData
     })
@@ -53,7 +53,7 @@ const FilePage = () => {
             axios({
                 headers: {'Content-Type': 'form-data' },
                 method: 'put',
-                url: 'http://127.0.0.1:80/filtering/' + response.data.data.id,
+                url: 'http://0.0.0.0:80/file-service/api/filtering/' + response.data.data.id,
                 withCredentials: true,
                 data: {},
             })
