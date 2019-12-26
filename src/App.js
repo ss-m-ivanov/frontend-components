@@ -17,7 +17,7 @@ const uri = 'http://localhost:5000';
 
 const Bla = () => {
 
-    let socket = io.connect(uri + '/test');
+    let socket = io.connect(uri + '/notification');
 
     socket.on('connect', function () {
         console.log("hello")
