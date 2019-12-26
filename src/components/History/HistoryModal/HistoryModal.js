@@ -8,7 +8,7 @@ const HistoryModal = props => {
       const nonEmptyValues = Object.keys(props.filter[key]).filter(order => {
       const value = props.filter[key][order]['value'];
       const count = props.filter[key][order]['count'];
-      return (value && count) ? true : false;
+      return (value || count) ? true : false;
     });
     return (nonEmptyValues.length) ? true : false;
   });
@@ -31,7 +31,7 @@ const HistoryModal = props => {
             {Object.keys(props.filter[key]).map(order => {
               const value = props.filter[key][order]['value'];
               const count = props.filter[key][order]['count'];
-              if (value && count) {
+              if (value || count) {
                 return (<p>{`${value ? `Value: ${value}` : ''} ${count ? `Count: ${count}` : ''}`}</p>)
               }
               return null
