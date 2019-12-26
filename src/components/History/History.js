@@ -71,7 +71,7 @@ const History = () => {
 
    const restoreFile = (file_id, filter_id) => {
         axios({ method: 'get',
-         url: `http://127.0.0.1:80/generate_new_file/file/${file_id}/filter/${filter_id}`,
+         url: `http://0.0.0.0:80/generate_new_file/file/${file_id}/filter/${filter_id}`,
          withCredentials: true
        })
          .then(response => {
