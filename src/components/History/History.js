@@ -4,11 +4,14 @@ import { store } from 'react-notifications-component';
 import Table from "../utils/Table/Table";
 import notificationObject from '../utils/Notification/Notification';
 import HistoryModal from "./HistoryModal/HistoryModal";
+import FileManipulationModal from './FileManipulationModal/FileManipulationModal';
 
 const History = () => {
    const [state, setState] = useState({
      history: [],
-     currentFilter: ''
+     currentFilter: '',
+     file_id: '',
+     filter_id: ''
    });
 
    useEffect (() => {
@@ -21,11 +24,11 @@ const History = () => {
              setState(prevState => ({
                ...prevState, history: history.map(record => ({
                     'Filename': record.path.split('/').pop(),
-                    'Filter': <button className="m-0" onClick={event => setCurrentFilter(record.filter)}>See filter</button>,
+                    'Filter': <button className="m-0 text-center" onClick={event => setCurrentFilter(record.filter)}>See filter</button>,
                     'Results': `${record.rows_id.length} row(s)`,
                     'Date': record.filter_date.split('T').shift(),
                     'Time': record.filter_date.split(/[T.]/)[1],
-                    'Restore': <button onClick={event => restoreFile(record.file_id, record.filter_id)}>Get it!</button>
+                    'File manipulation': <button className="m-0 text-center" onClick={event => setNewFileData(record.file_id, record.filter_id)}>Get it!</button>
                }))
              }))
        })
@@ -41,12 +44,22 @@ const History = () => {
 
    const [show, setShow] = useState(false);
 
-   const handleClose = () => {
+   const handleHistoryClose = () => {
      setShow(false);
    };
 
-   const handleShow = () => {
+   const handleHistoryShow = () => {
      setShow(true);
+   }
+
+   const [open, setOpen] = useState(false);
+
+   const handleFileManipulationClose = () => {
+     setOpen(false);
+   };
+
+   const handleFileManipulationShow = () => {
+     setOpen(true);
    }
 
    const parseFilter = filter => {
@@ -96,12 +109,23 @@ const History = () => {
      setShow(true);
    }
 
+   const setNewFileData = function(file_id, filter_id) {
+     setState(prevState => ({
+       ...prevState, file_id: file_id, filter_id: filter_id
+     }));
+     setOpen(true);
+   }
+
    const columns = [...new Set(...Object.values(state.history).map(object => Object.keys(object)))];
    if (state.history.length) {
      return (
          <div>
             <Table tableName="History" fileData={state.history} columns={columns} />
-            <HistoryModal show={show} handleShow={handleShow} handleClose={handleClose} filter={state.currentFilter}/>
+            <HistoryModal show={show} handleShow={handleHistoryShow} handleClose={handleHistoryClose}
+            filter={state.currentFilter}/>
+            <FileManipulationModal open={open} handleShow={handleFileManipulationShow}
+            handleClose={handleFileManipulationClose} filter={state.currentFilter} restoreFile={restoreFile}
+            file_id={state.file_id} filter_id={state.filter_id}/>
          </div>
        );
    } else {

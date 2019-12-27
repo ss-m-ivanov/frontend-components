@@ -115,10 +115,10 @@ import axios from "axios";
         } else {
             event.preventDefault();
             store.addNotification({
-            ...notificationObject,
-            title: "Error!",
-            message: `Invalid input data`,
-            type: "danger",
+              ...notificationObject,
+              title: "Error!",
+              message: `Invalid input data`,
+              type: "danger",
           });
         }
     };

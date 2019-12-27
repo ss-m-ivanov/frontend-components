@@ -57,7 +57,7 @@ const Filters = props => {
       <h2 className="d-flex justify-content-center m-3">Filters</h2>
       <AccordionElement columns={props.columns} />
       <ButtonGroup aria-label="Filter menu" className="d-flex justify-content-center m-3">
-        <Button variant="secondary">Home</Button>
+        <Button variant="secondary" onClick={event => props.history.push("/")}>Back</Button>
         <Button variant="secondary" type="submit" onClick={event => changeMethod(event, 'post')}>Save</Button>
         <Button variant="secondary" type="submit" onClick={event => changeMethod(event, 'put')}>Filter</Button>
       </ButtonGroup>
