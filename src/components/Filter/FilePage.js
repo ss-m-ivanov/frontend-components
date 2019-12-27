@@ -6,7 +6,7 @@ import FilterFile from './FilterFile/FilterFile';
 
 import axios from 'axios'
 
-const FilePage = () => {
+const FilePage = props => {
   const [state, setState] = useState({
     fileUploadStatus: false,
     fileName: '',
@@ -77,7 +77,8 @@ const FilePage = () => {
   if (state.fileUploadStatus) {
     return (
       <div className="file-page w-100 h-100">
-          <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse} currentFileId={state.currentFileId} />
+          <FilterFile columns={state.fileHeaders} fileData={state.fileData} responseResult={currentResponse}
+          currentFileId={state.currentFileId} history={props.history}/>
       </div>
     );
   }

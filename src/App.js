@@ -37,15 +37,7 @@ const App = () => {
             setState({userName: response.data.user_first_name, userSurname: response.data.user_last_name,
           userEmail: response.data.user_email, imgUrl: response.data.user_image_file, isAuth: true});
         })
-        .catch(error => {
-          store.addNotification({
-            ...notificationObject,
-            title: "Error!",
-            message: `${error}`,
-            type: "danger"
-            }
-          );
-        })
+        .catch(error => error);
     }, []);
 
   const activateAuthStatus = () => {
@@ -66,7 +58,7 @@ const App = () => {
               <Route path="/login" render={() => <Forms type="login" activateAuthStatus={activateAuthStatus} history={history}/>}/>
               <Route path="/register" render={() => <Forms type="register" history={history}/>}/>
               <Route path="/history" render={() => <History/>}/>
-              <Route path="/filter" render={() => <FilePage/>}/>
+              <Route path="/filter" render={() => <FilePage history={history}/>}/>
               <Route path="/feedback" render={() => <Forms type="feedback"/>}/>
               <Route path="/forgotpassword" render={() => <Forms type="forgotpassword"/>}/>
               <Route path="/profile" render={() => <Profile userName={state.userName} userSurname={state.userSurname} userEmail={state.userEmail} imgUrl={state.imgUrl}/>}/>
